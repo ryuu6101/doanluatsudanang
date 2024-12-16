@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::redirect('/', 'login', 301)->name('home');
+
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login.index');
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('login.auth');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::prefix('admin')->group(function () {
+        Route::redirect('/', 'admin/dashboard', 301)->name('admin');
+        Route::get('dashboard', [SectionController::class, 'dashboard'])->name('dashboard.index');
+    });
 });

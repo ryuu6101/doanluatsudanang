@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Filters;
+
+class DummyFilter extends QueryFilter
+{
+    protected $filterable = [
+        'id',
+    ];
+    
+    public function filterName($name) {
+        return $this->builder->where('name', 'like', '%' . $name . '%');
+    }
+}
