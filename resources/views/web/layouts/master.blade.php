@@ -21,16 +21,16 @@
     <link rel="preload" as="script" href="/assets/js/jquery/jquery.metisMenu.js?t=1613490624">
     <link rel="preload" as="script" href="/themes/doanluatsudanang/js/contact.js?t=1613490624">
     <link rel="preload" as="script" href="/themes/doanluatsudanang/js/bootstrap.min.js?t=1613490624"> --}}
-    <link rel="stylesheet" href="{{ asset('themes/doanluatsudanang/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themes/doanluatsudanang/css/bootstrap.non-responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('themes/doanluatsudanang/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('themes/doanluatsudanang/css/style.non-responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('themes/doanluatsudanang/css/news.css') }}">
-    <link rel="stylesheet" href="{{ asset('themes/doanluatsudanang/css/custom.css') }}">
-    <link rel="styleSheet" href="{{ asset('themes/doanluatsudanang/css/users.css') }}">
-    <link rel="stylesheet" href="{{ asset('themes/doanluatsudanang/css/jquery-ui.min.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('themes/doanluatsudanang/css/jquery.metisMenu.css') }}" type="text/css">
-    <link rel="styleSheet" href="{{ asset('themes/doanluatsudanang/css/contact.css') }}">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/assets/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/bootstrap.non-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/style.non-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/news.css') }}">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/custom.css') }}">
+    <link rel="styleSheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/users.css') }}">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/assets/js/jquery-ui/jquery-ui.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/jquery.metisMenu.css') }}">
+    <link rel="styleSheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/contact.css') }}">
     @stack('styles')
 </head>
 <body>
@@ -60,7 +60,7 @@
     </div>
     @include('web.layouts.footer')
 
-    <script src="{{ asset('themes/doanluatsudanang/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('doanluatsudanang/assets/js/jquery/jquery.min.js') }}"></script>
     <script>
         var nv_base_siteurl="/",
             nv_lang_data="vi",
@@ -80,11 +80,11 @@
             theme_responsive=0,
             nv_is_recaptcha=0;
     </script>
-    <script src="{{ asset('themes/doanluatsudanang/js/vi.js') }}"></script>
-    <script src="{{ asset('themes/doanluatsudanang/js/global.js') }}"></script>
-    <script src="{{ asset('themes/doanluatsudanang/js/page.js') }}"></script>
-    <script src="{{ asset('themes/doanluatsudanang/js/main.js') }}"></script>
-    <script src="{{ asset('themes/doanluatsudanang/js/custom.js') }}"></script>
+    <script src="{{ asset('doanluatsudanang/assets/js/language/vi.js') }}"></script>
+    <script src="{{ asset('doanluatsudanang/assets/js/global.js') }}"></script>
+    <script src="{{ asset('doanluatsudanang/themes/default/js/page.js') }}"></script>
+    <script src="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/main.js') }}"></script>
+    <script src="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/custom.js') }}"></script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -93,9 +93,9 @@
         "logo": "http://doanluatsudanang.vn/uploads/banner-dn.jpg"
     }
     </script>
-    <script type="text/javascript" src="{{ asset('themes/doanluatsudanang/js/jquery-ui.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('themes/doanluatsudanang/js/jquery.ui.datepicker-vi.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('themes/doanluatsudanang/js/users.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('doanluatsudanang/assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('doanluatsudanang/assets/js/language/jquery.ui.datepicker-vi.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('doanluatsudanang/themes/default/js/users.js') }}"></script>
     {{-- <script type="text/javascript" data-show="after">
         $(function() {
             checkWidthMenu();
@@ -113,7 +113,7 @@
             }
         });});
     </script>
-    <script type="text/javascript" src="{{ asset('themes/doanluatsudanang/js/jquery.metisMenu.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('doanluatsudanang/assets/js/jquery/jquery.metisMenu.js') }}"></script>
     <script type="text/javascript">
         $(function () {
             $('#menu_53').metisMenu({
@@ -128,8 +128,8 @@
             });
         });
     </script>
-    <script src="{{ asset('themes/doanluatsudanang/js/contact.js') }}"></script>
-    <script src="{{ asset('themes/doanluatsudanang/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/contact.js') }}"></script>
+    <script src="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/bootstrap.min.js') }}"></script>
 
     @stack('scripts')
 </body>
