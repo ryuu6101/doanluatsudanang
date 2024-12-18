@@ -43,10 +43,26 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('dashboard.index') }}" class="nav-link dashboard">
+                    <a href="{{ route('admin.dashboard.index') }}" class="nav-link dashboard">
                         <i class="icon-home4"></i>
                         <span>Trang chủ</span>
                     </a>
+                </li>
+
+                <li class="nav-item nav-item-submenu post-manager">
+                    <a href="#" class="nav-link">
+                        <i class="icon-stack-text"></i> 
+                        <span>Bài viết</span>
+                    </a>
+
+                    <ul class="nav nav-group-sub">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.categories.index') }}" class="nav-link categories">Danh mục</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.posts.index') }}" class="nav-link posts">Quản lý bài viết</a>
+                        </li>
+                    </ul>
                 </li>
 
             </ul>
@@ -61,8 +77,17 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
-        let menu = {{ Js::from($menu['sidebar'] ?? '') }};
-        $('.nav-link.'+menu).addClass('active');
+        let submenu = {{ Js::from($menu['submenu'] ?? '') }};
+        let sidebar = {{ Js::from($menu['sidebar'] ?? '') }};
+        
+        if (submenu != '') {
+            $('.nav-item.nav-item-submenu.'+submenu).addClass('nav-item-open');
+            $('.nav-item.nav-item-submenu.'+submenu+' > .nav.nav-group-sub').show();
+        }
+
+        if (sidebar != '') {
+            $('.nav-link.'+sidebar).addClass('active');
+        }
     })
 </script>
 @endpush

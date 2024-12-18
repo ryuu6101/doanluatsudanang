@@ -86,5 +86,15 @@
 
 	<script src="{{ asset('custom_assets/js/script.js') }}"></script>
 
+	@if (session('noty'))
+	<script>
+		let noty = {{ Js::from(session('noty')) }}
+		new Noty({
+			text: noty['message'],
+			type: noty['type'],
+		}).show();
+	</script>
+	@endif
+
 </body>
 </html>

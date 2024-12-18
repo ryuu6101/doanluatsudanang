@@ -25,7 +25,8 @@ class MakeFilterCommand extends Command
      */
     public function handle()
     {
-        $this->callSilent('create:filter', ['name' => $this->argument('name')]);
+        $name = ucfirst(trim($this->argument('name')));
+        $this->callSilent('create:filter', ['name' => $name]);
 
         $this->info('Create Filter success');
     }

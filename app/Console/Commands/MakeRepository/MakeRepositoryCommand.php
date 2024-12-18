@@ -25,8 +25,9 @@ class MakeRepositoryCommand extends Command
      */
     public function handle()
     {
-        $this->callSilent('create:repository-interface', ['name' => $this->argument('name')]);
-        $this->callSilent('create:repository', ['name' => $this->argument('name')]);
+        $name = ucfirst(trim($this->argument('name')));
+        $this->callSilent('create:repository-interface', ['name' => $name]);
+        $this->callSilent('create:repository', ['name' => $name]);
 
         $this->info('Create Repository success');
     }

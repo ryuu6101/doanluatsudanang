@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Web\SectionController as WebController;
+use App\Http\Controllers\Admin\SectionController as AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,7 @@ use App\Http\Controllers\Admin\SectionController;
 |
 */
 
-Route::redirect('/', 'login', 301)->name('home');
+// Route::redirect('/', 'login', 301)->name('home');
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login.index');
@@ -27,6 +29,14 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('admin')->group(function () {
         Route::redirect('/', 'admin/dashboard', 301)->name('admin');
-        Route::get('dashboard', [SectionController::class, 'dashboard'])->name('dashboard.index');
+        Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard.index');
+        Route::get('categories', [AdminController::class, 'categories'])->name('admin.categories.index');
+        Route::get('posts', [AdminController::class, 'posts'])->name('admin.posts.index');
+        Route::resource('post', PostController::class);
     });
 });
+
+Route::get('/', [WebController::class, 'home'])->name('home.index');
+Route::get('/about', [WebController::class, 'about'])->name('about.index');
+Route::get('/{category:slug}', [WebController::class, 'getCategoryPosts'])->name('category.posts.get');
+Route::get('/{category:slug}/{post:slug}', [WebController::class, 'postDetail'])->name('post.detail');

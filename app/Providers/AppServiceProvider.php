@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $models = ['User'];
+        $models = ['User', 'Category', 'Post'];
 
         foreach ($models as $key => $value) {
             $plural = Str::plural($value);
