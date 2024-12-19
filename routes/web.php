@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\LawyerController;
 use App\Http\Controllers\Web\SectionController as WebController;
 use App\Http\Controllers\Admin\SectionController as AdminController;
 
@@ -33,10 +34,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('categories', [AdminController::class, 'categories'])->name('admin.categories.index');
         Route::get('posts', [AdminController::class, 'posts'])->name('admin.posts.index');
         Route::resource('post', PostController::class);
+        Route::get('organizations', [AdminController::class, 'organizations'])->name('admin.organizations.index');
+        Route::get('lawyers', [AdminController::class, 'lawyers'])->name('admin.lawyers.index');
+        Route::resource('lawyer', LawyerController::class);
     });
 });
 
 Route::get('/', [WebController::class, 'home'])->name('home.index');
 Route::get('/about', [WebController::class, 'about'])->name('about.index');
+Route::get('/organs', [WebController::class, 'organs'])->name('organs.index');
 Route::get('/{category:slug}', [WebController::class, 'getCategoryPosts'])->name('category.posts.get');
 Route::get('/{category:slug}/{post:slug}', [WebController::class, 'postDetail'])->name('post.detail');

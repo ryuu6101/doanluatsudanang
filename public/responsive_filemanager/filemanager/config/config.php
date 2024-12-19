@@ -10,7 +10,7 @@ mb_http_input();
 mb_language('uni');
 mb_regex_encoding('UTF-8');
 ob_start('mb_output_handler');
-date_default_timezone_set('Europe/Rome');
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 setlocale(LC_CTYPE, 'en_US'); //correct transliteration
 
 /*
@@ -96,7 +96,7 @@ $config = array(
     | DO NOT put inside upload folder
     |
     */
-    'thumbs_base_path' => '../source/',
+    'thumbs_base_path' => '../thumb/',
 
     /*
     |--------------------------------------------------------------------------

@@ -7,3 +7,8 @@
  */
 
 /* Các tùy chỉnh CSS của giao diện nên để vào đây */
+
+.full-width-img {
+    width: 100%;
+    height: auto;
+}

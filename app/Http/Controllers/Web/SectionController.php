@@ -7,19 +7,27 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Posts\PostRepositoryInterface;
+use App\Repositories\Lawyers\LawyerRepositoryInterface;
 use App\Repositories\Categories\CategoryRepositoryInterface;
+use App\Repositories\Organizations\OrganizationRepositoryInterface;
 
 class SectionController extends Controller
 {
     protected $categoryRepos;
     protected $postRepos;
+    protected $organizationRepos;
+    protected $lawyerRepos;
 
     public function __construct(
         CategoryRepositoryInterface $categoryRepos,
         PostRepositoryInterface $postRepos,
+        OrganizationRepositoryInterface $organizationRepos,
+        LawyerRepositoryInterface $lawyerRepos,
     ) {
         $this->categoryRepos = $categoryRepos;
         $this->postRepos = $postRepos;
+        $this->organizationRepos = $organizationRepos;
+        $this->lawyerRepos = $lawyerRepos;
     }
 
     public function home() {
@@ -52,6 +60,17 @@ class SectionController extends Controller
     public function postDetail(Category $category, Post $post) {
         return view('web.sections.posts.detail')->with([
             'post' => $post,
+        ]);
+    }
+
+    public function organs() {
+        $menu = ['navbar' => 'quan-ly-luat-su'];
+
+        $organizations = $this->organizationRepos->getAll();
+
+        return view('web.sections.organs.index')->with([
+            'menu' => $menu,
+            'organizations' => $organizations,
         ]);
     }
 }

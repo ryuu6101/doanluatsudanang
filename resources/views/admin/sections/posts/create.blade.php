@@ -43,16 +43,16 @@
                             <span>Ngày đăng:
                         </div>
                         <div class="col-7">
-                            <input type="text" name="published_at" class="form-control form-control-sm" 
-                            value="{{ old('published_at') ?? 'Bây giờ' }}" readonly>
+                            <input type="text" name="published_at" class="form-control form-control-sm datepicker cursor-pointer" 
+                            value="{{ old('published_at') ?? '' }}" readonly placeholder=" Bây giờ">
                         </div>
                     </div>
                 </div>
                 <div class="card-footer p-2">
-                    <button type="submit" class="btn btn-outline-secondary btn-sm" name="published" value=0>
+                    <button type="submit" class="btn btn-outline-secondary btn-sm" name="publish" value=0>
                         Lưu bản nháp
                     </button>
-                    <button type="submit" class="btn btn-primary btn-sm float-right" name="published" value=1>
+                    <button type="submit" class="btn btn-primary btn-sm float-right" name="publish" value=1>
                         Đăng
                     </button>
                 </div>
@@ -62,13 +62,8 @@
                 <div class="card-body">
                     <input type="hidden" name="thumbnail" id="thumbnail" value="{{ old('thumbnail') }}">
                     <a href="javascript:open_filemanager('thumbnail')">
-                        @if (old('thumbnail'))
-                        <img src="{{ asset(old('thumbnail')) }}" alt=""  
-                        class="img-fluid w-100 rounded thumbnail-preview">
-                        @else
-                        <img src="{{ asset('images/placeholders/placeholder.png') }}" alt=""  
-                        class="img-fluid w-100 rounded thumbnail-preview">
-                        @endif
+                        @php($img_url = old('thumbnail') ?? asset('images/placeholders/placeholder.png'))
+                        <img src="{{ $img_url }}" alt="" class="img-fluid w-100 rounded thumbnail-preview border">
                     </a>
                 </div>
             </div>
@@ -97,7 +92,7 @@
 @push('scripts')
 <script src="{{ asset('tinymce/js/tinymce/tinymce.min.js') }}"></script>
 <script>
-    var options = { 
+    var tinymce_options = { 
         selector: ".editor",theme: "modern",width: '100%',height: 500, 
         plugins: [ 
             "advlist autolink link image lists charmap print preview hr anchor pagebreak", 
@@ -106,15 +101,21 @@
         ], 
         toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect", 
         toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor | print preview code ", 
-        image_advtab: true , 
+        image_advtab: true,
+        // image_prepend_url: "{{ asset('') }}",
+        relative_urls : false,
+        image_class_list: [
+            { title: 'Full width', value: 'full-width-img' },
+            { title: 'None', value: '' },
+        ],
         
         external_filemanager_path:"{{ url('responsive_filemanager/filemanager') }}/", 
         filemanager_title:"Trình quản lý tệp" , 
         external_plugins: { "filemanager" : "{{ url('responsive_filemanager/filemanager/plugin.min.js') }}"} 
     };
 
-    function open_filemanager() {
-        var url = "{{ url('responsive_filemanager/filemanager/dialog.php') }}?type=1&popup=1&field_id=thumbnail";
+    function open_filemanager(field_id) {
+        var url = "{{ url('responsive_filemanager/filemanager/dialog.php') }}?type=1&popup=1&field_id="+field_id;
         var w = 880;
         var h = 570;
         var l = Math.floor((screen.width - w) / 2);
@@ -128,7 +129,32 @@
     }
 
     $(document).ready(function() {
-        tinymce.init(options);
+        // $('.sidebar.sidebar-main').addClass('sidebar-main-resized');
+
+        tinymce.init(tinymce_options);
+
+        $('.datepicker').daterangepicker({
+            parentEl: '.content-inner',
+            singleDatePicker: true,
+            autoUpdateInput: false,
+            showDropdowns: true,
+            timePicker: true,
+            timePicker24Hour: true,
+            opens: 'left',
+            drops: 'auto',
+            locale: {
+                applyLabel: 'OK',
+                cancelLabel: 'Bây giờ',
+                daysOfWeek: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7','CN'],
+                monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                firstDay: 1,
+                format: 'DD/MM/YYYY HH:mm',
+            }
+        }).on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val("{{ now()->format('d/m/Y H:i') }}");
+        }).on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD/MM/YYYY HH:mm'));
+        });
     })
 </script>
 @endpush

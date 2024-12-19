@@ -21,6 +21,7 @@ class Post extends Model
         'category_id',
         'published_at',
         'public',
+        'user_id',
     ];
 
     protected $casts = ['published_at' => 'datetime'];

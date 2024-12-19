@@ -83,7 +83,7 @@
                                     @endforeach
                                     @else
                                     <tr>
-                                        <td colspan="4" class="text-center">(Danh sách trống)</td>
+                                        <td colspan="6" class="text-center">(Danh sách trống)</td>
                                     </tr>
                                     @endif
                                 </tbody>

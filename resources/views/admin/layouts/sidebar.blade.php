@@ -57,10 +57,34 @@
 
                     <ul class="nav nav-group-sub">
                         <li class="nav-item">
-                            <a href="{{ route('admin.categories.index') }}" class="nav-link categories">Danh mục</a>
+                            <a href="{{ route('admin.categories.index') }}" class="nav-link categories">
+                                Danh mục
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.posts.index') }}" class="nav-link posts">Quản lý bài viết</a>
+                            <a href="{{ route('admin.posts.index') }}" class="nav-link posts">
+                                Quản lý bài viết
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item nav-item-submenu personnel-manager">
+                    <a href="#" class="nav-link">
+                        <i class="icon-users"></i> 
+                        <span>Nhân sự</span>
+                    </a>
+
+                    <ul class="nav nav-group-sub">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.organizations.index') }}" class="nav-link organizations">
+                                Tổ chức
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.lawyers.index') }}" class="nav-link lawyers">
+                                Quản lý luật sư
+                            </a>
                         </li>
                     </ul>
                 </li>

@@ -47,7 +47,8 @@
                                         </a> 
                                     </li>
                                     <li class="quan-ly-luat-su" role="presentation">
-                                        <a class="dropdown-toggle" href="#!" role="button" aria-expanded="false" title="QUẢN LÝ LUẬT SƯ">  
+                                        <a class="dropdown-toggle" href="{{ route('organs.index') }}" role="button" 
+                                        aria-expanded="false" title="QUẢN LÝ LUẬT SƯ">  
                                             QUẢN LÝ LUẬT SƯ
                                         </a> 
                                     </li>

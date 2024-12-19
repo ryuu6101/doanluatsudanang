@@ -5,5 +5,6 @@
 @section('contents')
 
 @livewire('posts.list-post')
+@livewire('posts.delete-post')
 
 @endsection

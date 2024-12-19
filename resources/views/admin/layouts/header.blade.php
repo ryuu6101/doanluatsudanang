@@ -1,7 +1,7 @@
 <div class="page-header page-header-light">
     <div class="page-header-content header-elements-lg-inline">
         <div class="page-title d-flex">
-            <h4><i class="icon-arrow-left52 mr-2"></i> <spa class="font-weight-semibold">{{ $menu['breadcrumb'] ?? '' }}</h4>
+            <h4><i class="icon-arrow-left52 mr-2"></i> <spa class="font-weight-semibold">{{ $menu['title'] ?? '' }}</h4>
             {{-- <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a> --}}
         </div>
 
@@ -18,7 +18,9 @@
         <div class="d-flex">
             <div class="breadcrumb">
                 <a href="#!" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                <span class="breadcrumb-item active">{{ $menu['breadcrumb'] ?? '' }}</span>
+                @foreach ($menu['breadcrumb'] ?? [] as $breadcrumb)
+                <span class="breadcrumb-item {{ $loop->last ? 'active' : '' }}">{{ $breadcrumb ?? '' }}</span>
+                @endforeach
             </div>
 
             {{-- <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a> --}}

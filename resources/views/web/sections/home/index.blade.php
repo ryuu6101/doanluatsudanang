@@ -4,6 +4,7 @@
 
 @section('contents')
 
+@if ($hot_news->count() > 0)
 <div id="hot-news">
     <div class="panel panel-default news_column">
         <div class="panel-body">
@@ -53,6 +54,7 @@
         </div>
     </div>
 </div>
+@endif
 
 @foreach ($categories as $category)
 @php ($posts = $category->posts->sortByDesc('published_at'))

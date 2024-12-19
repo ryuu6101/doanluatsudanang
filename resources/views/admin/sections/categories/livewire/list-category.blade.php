@@ -37,7 +37,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center" style="width: 5%">STT</th>
-                                        <th scope="col" class="text-center" style="auto">Tên danh mục</th>
+                                        <th scope="col" class="text-center" style="width: auto">Tên danh mục</th>
                                         <th scope="col" class="text-center" style="width: 10%">Thao tác</th>
                                     </tr>
                                 </thead>

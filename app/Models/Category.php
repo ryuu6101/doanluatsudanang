@@ -19,7 +19,11 @@ class Category extends Model
         return 'slug';
     }
 
-    public function posts() {
+    public function all_posts() {
         return $this->hasMany(Post::class, 'category_id');
+    }
+
+    public function posts() {
+        return $this->all_posts()->whereNotNull('published_at')->where('public', 1);
     }
 }

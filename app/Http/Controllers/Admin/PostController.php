@@ -38,7 +38,8 @@ class PostController extends Controller
         $menu = [
             'submenu' => 'post-manager',
             'sidebar' => 'posts',
-            'breadcrumb' => '',
+            'title' => 'Thêm bài viết mới',
+            'breadcrumb' => ['Bài viết', 'Quản lý bài viết', 'Thêm bài viết mới'],
         ];
 
         $categories = $this->categoryRepos->getAll();
@@ -64,14 +65,15 @@ class PostController extends Controller
             'title.required' => 'Chưa nhập tiêu đề'
         ]);
 
+        $params['user_id'] = auth()->user()->id;
         $params['slug'] = Str::slug($request->input('title'));
         $params['thumbnail'] = str_replace(asset(''), '', $request->input('thumbnail'));
-        if ($request->input('published')) {
+        if ($request->input('publish')) {
             $message = 'Đã đăng bài viết';
-            if ($request->input('published_at') == 'Bây giờ') {
+            if ($request->input('published_at') == '') {
                 $params['published_at'] = now();
             } else {
-                $params['published_at'] = Carbon::createFromFormat('d/m/Y H:i', $request->input('published_at'));
+                $params['published_at'] = Carbon::createFromFormat('d/m/Y H:i', $request->input('published_at'))->format('Y-m-d H:i');
             }
         } else {
             $message = 'Đã lưu bản nháp bài viết';
@@ -103,7 +105,8 @@ class PostController extends Controller
         $menu = [
             'submenu' => 'post-manager',
             'sidebar' => 'posts',
-            'breadcrumb' => '',
+            'title' => 'Chỉnh sửa bài viết',
+            'breadcrumb' => ['Bài viết', 'Quản lý bài viết', 'Chỉnh sửa bài viết'],
         ];
 
         $categories = $this->categoryRepos->getAll();
@@ -132,15 +135,15 @@ class PostController extends Controller
 
         $params['slug'] = Str::slug($request->input('title'));
         $params['thumbnail'] = str_replace(asset(''), '', $request->input('thumbnail'));
-        if ($request->input('published') == null) {
+        if ($request->input('publish') == null) {
             $message = 'Đã cập nhật bài viết';
-            $params['published_at'] = Carbon::createFromFormat('d/m/Y H:i', $request->input('published_at'));
-        } elseif ($request->input('published')) {
+            $params['published_at'] = Carbon::createFromFormat('d/m/Y H:i', $request->input('published_at'))->format('Y-m-d H:i');
+        } elseif ($request->input('publish')) {
             $message = 'Đã đăng bài viết';
-            if ($request->input('published_at') == 'Bây giờ') {
+            if ($request->input('published_at') == '') {
                 $params['published_at'] = now();
             } else {
-                $params['published_at'] = Carbon::createFromFormat('d/m/Y H:i', $request->input('published_at'));
+                $params['published_at'] = Carbon::createFromFormat('d/m/Y H:i', $request->input('published_at'))->format('Y-m-d H:i');
             }
         } else {
             $message = 'Đã lưu bản nháp bài viết';
@@ -160,6 +163,10 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->postRepos->delete($id);
+        return redirect()->route('admin.posts.index')->with('noty', [
+            'type' => 'success',
+            'message' => 'Đã chuyển bài viết đến mục thùng rác',
+        ]);
     }
 }

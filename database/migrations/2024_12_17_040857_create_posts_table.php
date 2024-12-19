@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('published_at')->nullable();
             $table->boolean('public')->default(1);
             $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -9,18 +9,18 @@
     <meta property="og:site_name" content="doanluatsudanang">
     <meta property="og:url" content="http://doanluatsudanang.vn/about/">
     <link rel="shortcut icon" href="/favicon.ico">
-    {{-- <link rel="preload" as="script" href="/assets/js/jquery/jquery.min.js?t=1613490624">
-    <link rel="preload" as="script" href="/assets/js/language/vi.js?t=1613490624">
-    <link rel="preload" as="script" href="/assets/js/global.js?t=1613490624">
-    <link rel="preload" as="script" href="/themes/default/js/page.js?t=1613490624">
-    <link rel="preload" as="script" href="/themes/doanluatsudanang/js/main.js?t=1613490624">
-    <link rel="preload" as="script" href="/themes/doanluatsudanang/js/custom.js?t=1613490624">
-    <link rel="preload" as="script" href="/assets/js/jquery-ui/jquery-ui.min.js?t=1613490624">
-    <link rel="preload" as="script" href="/assets/js/language/jquery.ui.datepicker-vi.js?t=1613490624">
-    <link rel="preload" as="script" href="/themes/default/js/users.js?t=1613490624">
-    <link rel="preload" as="script" href="/assets/js/jquery/jquery.metisMenu.js?t=1613490624">
-    <link rel="preload" as="script" href="/themes/doanluatsudanang/js/contact.js?t=1613490624">
-    <link rel="preload" as="script" href="/themes/doanluatsudanang/js/bootstrap.min.js?t=1613490624"> --}}
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/jquery/jquery.min.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/language/vi.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/global.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/themes/default/js/page.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/main.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/custom.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/jquery-ui/jquery-ui.min.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/language/jquery.ui.datepicker-vi.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/themes/default/js/users.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/jquery/jquery.metisMenu.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/contact.js') }}">
+    <link rel="preload" as="script" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/bootstrap.min.js') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/bootstrap.non-responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/style.css') }}">
@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/assets/js/jquery-ui/jquery-ui.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/jquery.metisMenu.css') }}">
     <link rel="styleSheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/contact.css') }}">
+    <link rel="styleSheet" href="{{ asset('doanluatsudanang/themes/default/css/organs.css') }}">
     @stack('styles')
 </head>
 <body>
@@ -96,6 +97,7 @@
     <script type="text/javascript" src="{{ asset('doanluatsudanang/assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('doanluatsudanang/assets/js/language/jquery.ui.datepicker-vi.js') }}"></script>
     <script type="text/javascript" src="{{ asset('doanluatsudanang/themes/default/js/users.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('doanluatsudanang/themes/default/js/organs.js') }}"></script>
     {{-- <script type="text/javascript" data-show="after">
         $(function() {
             checkWidthMenu();
