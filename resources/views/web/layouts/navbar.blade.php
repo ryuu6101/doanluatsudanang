@@ -7,7 +7,10 @@
                         <div class="navbar navbar-default navbar-static-top" role="navigation">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-site-default">
-                                    <span class="sr-only">&nbsp;</span> <span class="icon-bar">&nbsp;</span> <span class="icon-bar">&nbsp;</span> <span class="icon-bar">&nbsp;</span>
+                                    <span class="sr-only">&nbsp;</span> 
+                                    <span class="icon-bar">&nbsp;</span> 
+                                    <span class="icon-bar">&nbsp;</span> 
+                                    <span class="icon-bar">&nbsp;</span>
                                 </button>
                             </div>
                             <div class="collapse navbar-collapse" id="menu-site-default">
@@ -31,7 +34,8 @@
                                         </a> 
                                     </li>
                                     <li class="thong-bao-thong-tin" role="presentation">
-                                        <a class="dropdown-toggle" href="#!" role="button" aria-expanded="false" title="THÔNG BÁO - THÔNG TIN">  
+                                        <a class="dropdown-toggle" href="{{ route('documents.index') }}" role="button" 
+                                        aria-expanded="false" title="THÔNG BÁO - THÔNG TIN">  
                                             THÔNG BÁO - THÔNG TIN
                                         </a> 
                                     </li>
@@ -42,7 +46,8 @@
                                         </a> 
                                     </li>
                                     <li class="lien-he" role="presentation">
-                                        <a class="dropdown-toggle" href="#!" role="button" aria-expanded="false" title="LIÊN HỆ">  
+                                        <a class="dropdown-toggle" href="{{ route('contact.index') }}" role="button" 
+                                        aria-expanded="false" title="LIÊN HỆ">  
                                             LIÊN HỆ
                                         </a> 
                                     </li>

@@ -37,11 +37,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('organizations', [AdminController::class, 'organizations'])->name('admin.organizations.index');
         Route::get('lawyers', [AdminController::class, 'lawyers'])->name('admin.lawyers.index');
         Route::resource('lawyer', LawyerController::class);
+        Route::get('file-manager', [AdminController::class, 'fileManager'])->name('admin.file-manager.index');
     });
 });
 
 Route::get('/', [WebController::class, 'home'])->name('home.index');
 Route::get('/about', [WebController::class, 'about'])->name('about.index');
+Route::get('/contact', [WebController::class, 'contact'])->name('contact.index');
+Route::get('/van-ban-phap-luat', [WebController::class, 'documents'])->name('documents.index');
+Route::get('/van-ban-phap-luat/{document:slug}', [WebController::class, 'documentDetail'])->name('document.detail');
 Route::get('/organs', [WebController::class, 'organs'])->name('organs.index');
+Route::get('/organs/vieworg/{organization:slug}', [WebController::class, 'getOrganLawyers'])->name('organ.lawyers.get');
+Route::get('/organs/vieworg/{organization:slug}/{lawyer:slug}', [WebController::class, 'lawyerDetail'])->name('lawyer.detail');
 Route::get('/{category:slug}', [WebController::class, 'getCategoryPosts'])->name('category.posts.get');
 Route::get('/{category:slug}/{post:slug}', [WebController::class, 'postDetail'])->name('post.detail');

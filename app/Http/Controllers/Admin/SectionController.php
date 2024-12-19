@@ -60,4 +60,14 @@ class SectionController extends Controller
 
         return view('admin.sections.lawyers.index')->with(['menu' => $menu]);
     }
+
+    public function fileManager() {
+        $menu = [
+            'sidebar' => 'file-manager',
+            'title' => 'Quản lý file',
+            'breadcrumb' => ['Quản lý file'],
+        ];
+
+        return view('admin.sections.file-manager.index')->with(['menu' => $menu]);
+    }
 }

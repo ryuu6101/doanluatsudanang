@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             DocumentsTableSeeder::class,
             OrganizationsTableSeeder::class,
+            SiteConfigsTableSeeder::class,
         ]);
     }
 }

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Post;
+use App\Models\Lawyer;
 use App\Models\Category;
+use App\Models\Document;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Posts\PostRepositoryInterface;
@@ -72,5 +75,35 @@ class SectionController extends Controller
             'menu' => $menu,
             'organizations' => $organizations,
         ]);
+    }
+
+    public function getOrganLawyers(Organization $organization) {
+        $lawyers = $organization->lawyers;
+        return view('web.sections.lawyers.index')->with([
+            'organization' => $organization,
+            'lawyers' => $lawyers,
+        ]);
+    }
+
+    public function lawyerDetail(Organization $organization, Lawyer $lawyer) {
+        return view('web.sections.lawyers.detail')->with([
+            'lawyer' => $lawyer,
+        ]);
+    }
+
+    public function contact() {
+        $menu = ['navbar' => 'lien-he'];
+
+        return view('web.sections.contact.index')->with(['menu' => $menu]);
+    }
+
+    public function documents() {
+        $menu = ['navbar' => 'thong-bao-thong-tin'];
+
+        return view('web.sections.documents.index')->with(['menu' => $menu]);
+    }
+
+    public function documentDetail(Document $document) {
+        return view('web.sections.documents.detail')->with(['document' => $document]);
     }
 }

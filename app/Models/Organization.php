@@ -17,6 +17,10 @@ class Organization extends Model
         'email',
     ];
 
+    public function getRouteKeyName() {
+        return 'slug';
+    }
+
     public function lawyers() {
         return $this->hasMany(Lawyer::class, 'organization_id');
     }

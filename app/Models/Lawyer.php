@@ -26,6 +26,10 @@ class Lawyer extends Model
         'card_issuance_date' => 'datetime',
     ];
 
+    public function getRouteKeyName() {
+        return 'slug';
+    }
+
     public function organization() {
         return $this->belongsTo(Organization::class, 'organization_id');
     }

@@ -7,8 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="doanluatsudanang">
-    <meta property="og:url" content="http://doanluatsudanang.vn/about/">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('doanluatsudanang/icon/favicon.ico') }}">
     <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/jquery/jquery.min.js') }}">
     <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/language/vi.js') }}">
     <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/global.js') }}">

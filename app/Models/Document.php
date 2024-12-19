@@ -14,4 +14,8 @@ class Document extends Model
         'name',
         'slug',
     ];
+
+    public function getRouteKeyName() {
+        return 'slug';
+    }
 }

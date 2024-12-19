@@ -89,6 +89,13 @@
                     </ul>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('admin.file-manager.index') }}" class="nav-link file-manager">
+                        <i class="icon-files-empty"></i>
+                        <span>Quản lý file</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- /main navigation -->

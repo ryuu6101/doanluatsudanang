@@ -31,6 +31,14 @@ class DocumentsTableSeeder extends Seeder
                 'slug' => 'nghi-dinh',
             ],
             [
+                'name' => 'Nghị quyết',
+                'slug' => 'nghi-quyet',
+            ],
+            [
+                'name' => 'Quyết định',
+                'slug' => 'quyet-dinh',
+            ],
+            [
                 'name' => 'Thông tư',
                 'slug' => 'thong-tu',
             ],

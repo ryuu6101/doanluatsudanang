@@ -9,12 +9,11 @@
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
         <caption>
-            <a class="org" href="#!">{{ $organization->name }}</a>
-            <br><strong>Email:</strong>{{ $organization->email }}
-            <br><strong>Điện thoại:</strong> {{ $organization->phone }}
+            <a class="org" href="{{ route('organ.lawyers.get', ['organization' => $organization]) }}">{{ $organization->name }}</a>
+            <br><strong>Email: </strong>{{ $organization->email }}
+            <br><strong>Điện thoại: </strong> {{ $organization->phone }}
         </caption>
         @if ($organization->lawyers->count() > 0)
-        @foreach ($organization->lawyers as $lawyer)
         <thead>
             <tr>
                 <th class="text-center">STT</th>
@@ -26,10 +25,12 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($organization->lawyers as $lawyer)
+            @php($lawyer_url = route('lawyer.detail', ['organization' => $organization, 'lawyer' => $lawyer]))
             <tr>
                 <td class="text-center" style="text-align: center; vertical-align: middle">{{ $loop->iteration }}</td>
                 <td style="vertical-align: middle">
-                    <a href="#!" class="name_org">
+                    <a href="{{ $lawyer_url }}" class="name_org">
                         <strong style="font-size:12px;">{{ $lawyer->fullname }}</strong>
                     </a> <br>
                 </td>
@@ -43,8 +44,8 @@
                     <strong><br>{{ $lawyer->workplace }}</strong>
                 </td>
                 <td style="text-align: center; vertical-align: middle">
-                    <a href="#!" title="{{ $lawyer->fullname }}">
-                        @if ($lawyer->profile_pic && $lawyer->profile_pic != '')
+                    <a href="{{ $lawyer_url }}" title="{{ $lawyer->fullname }}">
+                        @if ($lawyer->profile_pic)
                         <img src="{{ asset($lawyer->profile_pic) }}" class="img-thumbnail" 
                         style="max-width: 80px" alt="{{ $lawyer->fullname }}">
                         @else
@@ -54,8 +55,8 @@
                     </a>
                 </td>
             </tr>
+            @endforeach
         </tbody>
-        @endforeach
         @endif
     </table>
 </div>
