@@ -35,9 +35,9 @@
             <div class="hometext m-bottom" itemprop="description">{{ $post->description }}</div>
                 <figure class="article center">
                     @if ($post->thumbnail)
-                    <img alt="{{ $post->title }}" src="{{ url($post->thumbnail) }}" width="460" class="img-thumbnail">
+                    <img alt="{{ $post->title }}" src="{{ url($post->thumbnail) }}" class="img-thumbnail">
                     @else
-                    <img alt="" src="{{ asset('images/placeholders/placeholder.png') }}" width="460" class="img-thumbnail">
+                    <img alt="" src="{{ asset('images/placeholders/placeholder.png') }}" class="img-thumbnail">
                     @endif
                 <figcaption>{{ $post->title }}</figcaption>
             </figure>
