@@ -49,6 +49,21 @@
                     </a>
                 </li>
 
+                <li class="nav-item nav-item-submenu account-manager">
+                    <a href="#" class="nav-link">
+                        <i class="icon-user"></i> 
+                        <span>Tài khoản</span>
+                    </a>
+
+                    <ul class="nav nav-group-sub">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.users.index') }}" class="nav-link users">
+                                Quản lý tài khoản
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item nav-item-submenu post-manager">
                     <a href="#" class="nav-link">
                         <i class="icon-stack-text"></i> 

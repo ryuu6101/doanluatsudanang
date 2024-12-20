@@ -44,7 +44,7 @@
                                         <th scope="col" class="text-center" style="width: auto">Bộ phận</th>
                                         <th scope="col" class="text-center" style="width: auto">Ngày sinh</th>
                                         <th scope="col" class="text-center" style="width: auto">Ngày cấp thẻ</th>
-                                        <th scope="col" class="text-center" style="width: 10%">Thao tác</th>
+                                        <th scope="col" class="text-center" style="width: 15%">Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,6 +72,10 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
+                                            <span type="button" class="badge badge-sm badge-primary" 
+                                            data-toggle="modal" data-target="#lawyerInfoModal" data-lawyer-id="{{ $lawyer->id }}">
+                                                <i class="icon-eye"></i>
+                                            </span>
                                             <a href="{{ route('lawyer.edit', ['lawyer' => $lawyer->id]) }}" class="badge badge-sm badge-success">
                                                 <i class="icon-pencil5"></i>
                                             </a>

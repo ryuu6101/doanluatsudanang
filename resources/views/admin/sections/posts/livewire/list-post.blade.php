@@ -22,6 +22,14 @@
                     <div class="col-auto">
                         <input type="text" class="form-control" placeholder="Tìm kiếm" wire:model.live="params.name">
                     </div>
+                    <div class="col-auto">
+                        <select class="custom-select w-auto" wire:model.live="params.category_id">
+                            <option value="">Tất cả danh mục</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="col text-right">
                         <a href="{{ route('post.create') }}" class="btn btn-sm btn-success">
                             <i class="icon-plus3 mr-2"></i>
@@ -55,7 +63,7 @@
                                         {{-- <td class="text-center">
                                             <img src="{{ asset($post->thumbnail) }}" alt="" class="img-fluid">
                                         </td> --}}
-                                        <td class="text-left">{{ $post->title ?? '' }}</td>
+                                        <td class="text-left text-wrap">{{ $post->title ?? '' }}</td>
                                         <td class="text-center">{{ $post->category->name ?? '' }}</td>
                                         <td class="text-center">
                                             @if ($post->published_at)

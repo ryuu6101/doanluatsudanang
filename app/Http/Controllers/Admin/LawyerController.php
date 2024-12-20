@@ -66,12 +66,13 @@ class LawyerController extends Controller
             'workplace.required' => 'Chưa nhập nơi làm việc',
         ]);
 
-        $params['slug'] = Str::slug($request->input('fullname'));
+        // $params['slug'] = Str::slug($request->input('fullname'));
         $params['profile_pic'] = str_replace(asset(''), '', $request->input('profile_pic'));
         $params['birthday'] = Carbon::createFromFormat('d/m/Y', $request->input('birthday'))->format('Y-m-d');
         $params['card_issuance_date'] = Carbon::createFromFormat('d/m/Y', $request->input('card_issuance_date'))->format('Y-m-d');
 
-        $this->lawyerRepos->create($params);
+        $lawyer = $this->lawyerRepos->create($params);
+        $lawyer->update(['slug' => Str::slug($request->input('fullname')).'-'.$lawyer->id]);
 
         return redirect()->route('admin.lawyers.index')->with('noty', [
             'type' => 'success',
@@ -126,7 +127,7 @@ class LawyerController extends Controller
             'workplace.required' => 'Chưa nhập nơi làm việc',
         ]);
 
-        $params['slug'] = Str::slug($request->input('fullname'));
+        $params['slug'] = Str::slug($request->input('fullname')).'-'.$id;
         $params['profile_pic'] = str_replace(asset(''), '', $request->input('profile_pic'));
         $params['birthday'] = Carbon::createFromFormat('d/m/Y', $request->input('birthday'))->format('Y-m-d');
         $params['card_issuance_date'] = Carbon::createFromFormat('d/m/Y', $request->input('card_issuance_date'))->format('Y-m-d');

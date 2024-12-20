@@ -5,19 +5,30 @@ namespace App\Livewire\Posts;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Repositories\Posts\PostRepositoryInterface;
+use App\Repositories\Categories\CategoryRepositoryInterface;
 
 class ListPost extends Component
 {
     use WithPagination;
 
+    protected $categoryRepos;
     protected $postRepos;
 
     public $paginate = 10;
     public $params = [];
+    public $categories;
 
     protected $listeners = ['refresh' => '$refresh', 'search'];
 
-    public function boot(PostRepositoryInterface $postRepos) {
+    public function mount() {
+        $this->categories = $this->categoryRepos->getAll();
+    }
+
+    public function boot(
+        CategoryRepositoryInterface $categoryRepos,
+        PostRepositoryInterface $postRepos,
+    ) {
+        $this->categoryRepos = $categoryRepos;
         $this->postRepos = $postRepos;
     }
 

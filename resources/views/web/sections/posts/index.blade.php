@@ -33,6 +33,7 @@
                     </li>
                 </ul>
             </div>
+            <span>{{ $post->description }}</span>
         </div>
     </div>
     @endforeach

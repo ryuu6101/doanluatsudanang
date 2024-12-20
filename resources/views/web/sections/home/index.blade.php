@@ -95,6 +95,7 @@
                             <li><em class="fa fa-comment-o">&nbsp;</em> 0</li>
                         </ul>
                     </div>
+                    <span>{{ $first_post->description }}</span>
                 </div>
 
                 @if ($posts->count() > 0)

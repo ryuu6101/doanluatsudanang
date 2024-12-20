@@ -17,6 +17,17 @@ class SectionController extends Controller
         return view('admin.sections.dashboard.index')->with(['menu' => $menu]);
     }
 
+    public function users() {
+        $menu = [
+            'submenu' => 'account-manager',
+            'sidebar' => 'users',
+            'title' => 'Quản lý tài khoản',
+            'breadcrumb' => ['Tài khoản', 'Quản lý tài khoản'],
+        ];
+
+        return view('admin.sections.users.index')->with(['menu' => $menu]);
+    }
+
     public function categories() {
         $menu = [
             'submenu' => 'post-manager',

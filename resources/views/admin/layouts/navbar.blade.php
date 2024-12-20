@@ -20,21 +20,31 @@
     </div>
 
     <ul class="navbar-nav flex-row order-1 order-lg-2 flex-1 flex-lg-0 justify-content-end align-items-center">
-        <li class="nav-item nav-item-dropdown-lg dropdown">
+        {{-- <li class="nav-item nav-item-dropdown-lg dropdown">
             <a href="{{ route('logout') }}" class="navbar-nav-link">
                 <i class="icon-switch2"></i>
             </a>
-        </li>
+        </li> --}}
 
-        {{-- <li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
-            <a href="#" class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100" data-toggle="dropdown">
+        <li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
+            <a href="#" class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100" 
+            data-toggle="dropdown">
                 <img src="{{ asset('images/clipart3643767.png') }}" class="rounded-pill mr-lg-2" height="34" alt="">
-                <span class="d-none d-lg-inline-block">Victoria</span>
+                <span class="d-none d-lg-inline-block">{{ auth()->user()->username }}</span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">
-                <a href="#" class="dropdown-item"><i class="icon-switch2"></i> Đăng xuất</a>
+                <a href="#!" class="dropdown-item" data-toggle="modal" data-target="#changePasswordModal">
+                    <i class="icon-key"></i> 
+                    Đổi mật khẩu
+                </a>
+                <a href="{{ route('logout') }}" class="dropdown-item">
+                    <i class="icon-switch2"></i> 
+                    Đăng xuất
+                </a>
             </div>
-        </li> --}}
+        </li>
     </ul>
 </div>
+
+@livewire('users.change-password')

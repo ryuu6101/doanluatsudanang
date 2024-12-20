@@ -6,5 +6,6 @@
 
 @livewire('lawyers.list-lawyer')
 @livewire('lawyers.delete-lawyer')
+@livewire('lawyers.lawyer-info')
 
 @endsection

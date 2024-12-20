@@ -61,6 +61,9 @@ class SectionController extends Controller
     }
 
     public function postDetail(Category $category, Post $post) {
+        $view_count = $post->view_count + 1;
+        $post->update(['view_count' => $view_count]);
+
         return view('web.sections.posts.detail')->with([
             'post' => $post,
         ]);

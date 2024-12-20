@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::redirect('/', 'admin/dashboard', 301)->name('admin');
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard.index');
+        Route::get('users', [AdminController::class, 'users'])->name('admin.users.index');
         Route::get('categories', [AdminController::class, 'categories'])->name('admin.categories.index');
         Route::get('posts', [AdminController::class, 'posts'])->name('admin.posts.index');
         Route::resource('post', PostController::class);
