@@ -22,8 +22,8 @@ class Lawyer extends Model
     ];
 
     protected $casts = [
-        'birthday' => 'datetime',
-        'card_issuance_date' => 'datetime',
+        'birthday' => 'date',
+        'card_issuance_date' => 'date',
     ];
 
     public function getRouteKeyName() {

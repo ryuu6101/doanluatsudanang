@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('card_number')->nullable();
             $table->string('workplace')->nullable();
             $table->unsignedBigInteger('organization_id')->nullable();
-            $table->timestamp('birthday')->nullable();
-            $table->timestamp('card_issuance_date')->nullable();
+            $table->date('birthday')->nullable();
+            $table->date('card_issuance_date')->nullable();
             $table->timestamps();
         });
     }

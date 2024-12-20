@@ -70,4 +70,14 @@ class SectionController extends Controller
 
         return view('admin.sections.file-manager.index')->with(['menu' => $menu]);
     }
+
+    public function siteConfig() {
+        $menu = [
+            'sidebar' => 'site-config',
+            'title' => 'Thông tin website',
+            'breadcrumb' => ['Thông tin website'],
+        ];
+        
+        return view('admin.sections.site-config.index')->with(['menu' => $menu]);
+    }
 }

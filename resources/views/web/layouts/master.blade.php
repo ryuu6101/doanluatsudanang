@@ -22,8 +22,10 @@
     <link rel="preload" as="script" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/bootstrap.min.js') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/bootstrap.non-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/style.non-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/style.responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/news.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/custom.css') }}">
     <link rel="styleSheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/users.css') }}">

@@ -91,7 +91,7 @@
                     <div class="text-muted">
                         <ul class="list-unstyled list-inline">
                             <li><em class="fa fa-clock-o">&nbsp;</em>{{ $first_post->published_at->format('d/m/Y H:i') }}</li>
-                            <li><em class="fa fa-eye">&nbsp;</em> 80</li>
+                            <li><em class="fa fa-eye">&nbsp;</em> {{ $first_post->view_count }}</li>
                             <li><em class="fa fa-comment-o">&nbsp;</em> 0</li>
                         </ul>
                     </div>

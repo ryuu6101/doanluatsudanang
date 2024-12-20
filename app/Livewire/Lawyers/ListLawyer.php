@@ -31,7 +31,7 @@ class ListLawyer extends Component
 
     public function render()
     {
-        $lawyers = $this->lawyerRepos->filter($this->params, $this->paginate);
+        $lawyers = $this->lawyerRepos->filter($this->params)->sortBy('card_number')->paginate($this->paginate);
         return view('admin.sections.lawyers.livewire.list-lawyer')->with(['lawyers' => $lawyers]);
     }
 }

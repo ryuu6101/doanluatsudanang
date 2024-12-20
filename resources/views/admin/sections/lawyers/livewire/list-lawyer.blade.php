@@ -76,7 +76,7 @@
                                                 <i class="icon-pencil5"></i>
                                             </a>
                                             <span type="button" class="badge badge-sm badge-danger" 
-                                            data-toggle="modal" data-target="#deletelawyerModal" data-lawyer-id="{{ $lawyer->id }}">
+                                            data-toggle="modal" data-target="#deleteLawyerModal" data-lawyer-id="{{ $lawyer->id }}">
                                                 <i class="icon-trash"></i>
                                             </span>
                                         </td>

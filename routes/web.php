@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('lawyers', [AdminController::class, 'lawyers'])->name('admin.lawyers.index');
         Route::resource('lawyer', LawyerController::class);
         Route::get('file-manager', [AdminController::class, 'fileManager'])->name('admin.file-manager.index');
+        Route::get('site-config', [AdminController::class, 'siteConfig'])->name('admin.site-config.index');
     });
 });
 

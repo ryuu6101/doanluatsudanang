@@ -14,8 +14,7 @@
                 <strong>Điện thoại cơ quan:</strong> {{ $organization->phone }}
             </li>
         </ul>
-        <p class="text-center">
-        </p>
+        <p class="text-center"></p>
 
         <hr>
         @if ($lawyers->count() > 0)
@@ -23,7 +22,7 @@
             @foreach ($lawyers as $lawyer)
             @php($lawyer_url = route('lawyer.detail', ['organization' => $organization, 'lawyer' => $lawyer]))
             <div class="col-sm-6 col-md-6">
-                <div class="thumbnail" style="min-height: 218.6px;">
+                <div class="thumbnail lawyer-thumbnail">
                     <div style="height: 100px">
                         <a href="{{ $lawyer_url }}" title="{{ $lawyer->fullname }}">
                             @if ($lawyer->profile_pic != '')
@@ -50,4 +49,23 @@
     </div>
 </div>
 
+<div class="text-center">
+    {!! $lawyers->links('web.components.pagination') !!}
+</div>
+
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        var maxHeight = 0;
+
+        $('.lawyer-thumbnail').each(function(){
+            var thisH = $(this).height();
+            if (thisH > maxHeight) { maxHeight = thisH; }
+        });
+
+        $('.lawyer-thumbnail').height(maxHeight);
+    });
+</script>
+@endpush

@@ -96,6 +96,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('admin.site-config.index') }}" class="nav-link site-config">
+                        <i class="icon-info22"></i>
+                        <span>Thông tin website</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- /main navigation -->

@@ -26,7 +26,7 @@
                         <em class="fa fa-clock-o">&nbsp;</em> {{ $post->published_at->format('d/m/Y H:i:s A') }}
                     </li>
                     <li>
-                        <em class="fa fa-eye">&nbsp;</em> Đã xem: 769
+                        <em class="fa fa-eye">&nbsp;</em> Đã xem: {{ $post->view_count }}
                     </li>
                     <li>
                         <em class="fa fa-comment-o">&nbsp;</em> Phản hồi: 0
@@ -37,6 +37,10 @@
     </div>
     @endforeach
     @endif
+</div>
+
+<div class="text-center">
+    {!! $posts->links('web.components.pagination') !!}
 </div>
 
 @endsection

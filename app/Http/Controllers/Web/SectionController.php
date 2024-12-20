@@ -53,7 +53,7 @@ class SectionController extends Controller
     }
 
     public function getCategoryPosts(Category $category) {
-        $posts = $category->posts->sortByDesc('published_at');
+        $posts = $category->posts()->orderBy('published_at', 'desc')->paginate(20);
         return view('web.sections.posts.index')->with([
             'category' => $category,
             'posts' => $posts,
@@ -78,7 +78,7 @@ class SectionController extends Controller
     }
 
     public function getOrganLawyers(Organization $organization) {
-        $lawyers = $organization->lawyers;
+        $lawyers = $organization->lawyers()->paginate(48);
         return view('web.sections.lawyers.index')->with([
             'organization' => $organization,
             'lawyers' => $lawyers,
