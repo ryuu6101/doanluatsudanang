@@ -30,6 +30,9 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="col-auto">
+                        <input type="text" class="form-control daterange-picker cursor-pointer" readonly placeholder="Ngày đăng bài">
+                    </div>
                     <div class="col text-right">
                         <a href="{{ route('post.create') }}" class="btn btn-sm btn-success">
                             <i class="icon-plus3 mr-2"></i>
@@ -66,10 +69,12 @@
                                         <td class="text-left text-wrap">{{ $post->title ?? '' }}</td>
                                         <td class="text-center">{{ $post->category->name ?? '' }}</td>
                                         <td class="text-center">
-                                            @if ($post->published_at)
+                                            @if (!$post->published_at)
+                                            <span class="badge badge-sm badge-secondary">Nháp</span>
+                                            @elseif ($post->public)
                                             <span class="badge badge-sm badge-success">Đã đăng</span>
                                             @else
-                                            <span class="badge badge-sm badge-secondary">Nháp</span>
+                                            <span class="badge badge-sm badge-danger">Đã ẩn</span>
                                             @endif
                                         </td>
                                         <td class="text-center">
@@ -109,3 +114,35 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('.daterange-picker').daterangepicker({
+            parentEl: '.content-inner',
+            autoUpdateInput: false,
+            showDropdowns: true,
+            opens: 'left',
+            drops: 'down',
+            locale: {
+                applyLabel: 'OK',
+                cancelLabel: 'Xóa',
+                daysOfWeek: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7','CN'],
+                monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                firstDay: 1,
+                format: 'DD/MM/YYYY',
+            }
+        }).on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val("");
+            @this.set('params.published_date_start', '');
+            @this.set('params.published_date_end', '');
+        }).on('apply.daterangepicker', function(ev, picker) {
+            var start_date = picker.startDate.format('DD/MM/YYYY');
+            var end_date = picker.endDate.format('DD/MM/YYYY');
+            $(this).val(start_date+' - '+end_date);
+            @this.set('params.published_date_start', start_date);
+            @this.set('params.published_date_end', end_date);
+        });
+    })
+</script>
+@endpush

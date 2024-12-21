@@ -135,18 +135,20 @@ class PostController extends Controller
 
         $params['slug'] = Str::slug($request->input('title'));
         $params['thumbnail'] = str_replace(asset(''), '', $request->input('thumbnail'));
+
+        if ($request->input('published_at') == '') {
+            $params['published_at'] = now();
+        } else {
+            $params['published_at'] = Carbon::createFromFormat('d/m/Y H:i', $request->input('published_at'))->format('Y-m-d H:i');
+        }
+
         if ($request->input('publish') == null) {
             $message = 'Đã cập nhật bài viết';
-            $params['published_at'] = Carbon::createFromFormat('d/m/Y H:i', $request->input('published_at'))->format('Y-m-d H:i');
         } elseif ($request->input('publish')) {
             $message = 'Đã đăng bài viết';
-            if ($request->input('published_at') == '') {
-                $params['published_at'] = now();
-            } else {
-                $params['published_at'] = Carbon::createFromFormat('d/m/Y H:i', $request->input('published_at'))->format('Y-m-d H:i');
-            }
         } else {
             $message = 'Đã lưu bản nháp bài viết';
+            unset($params['published_at']);
         }
 
         $post = $this->postRepos->find($id);
@@ -166,7 +168,7 @@ class PostController extends Controller
         $this->postRepos->delete($id);
         return redirect()->route('admin.posts.index')->with('noty', [
             'type' => 'success',
-            'message' => 'Đã chuyển bài viết đến mục thùng rác',
+            'message' => 'Bài viết đã được đưa đến mục thùng rác',
         ]);
     }
 }

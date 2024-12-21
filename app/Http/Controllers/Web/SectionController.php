@@ -6,9 +6,12 @@ use App\Models\Post;
 use App\Models\Lawyer;
 use App\Models\Category;
 use App\Models\Document;
+use Illuminate\Support\Str;
 use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use App\Repositories\Posts\PostRepositoryInterface;
 use App\Repositories\Lawyers\LawyerRepositoryInterface;
 use App\Repositories\Categories\CategoryRepositoryInterface;
@@ -37,7 +40,7 @@ class SectionController extends Controller
         $menu = ['navbar' => 'tin-tuc'];
 
         $categories = $this->categoryRepos->getAll();
-        $hot_news = $this->postRepos->getAll()->take(6)->sortByDesc('published_at');
+        $hot_news = $this->postRepos->getPublicPosts()->sortByDesc('published_at')->take(6);
 
         return view('web.sections.home.index')->with([
             'menu' => $menu,
@@ -60,13 +63,37 @@ class SectionController extends Controller
         ]);
     }
 
-    public function postDetail(Category $category, Post $post) {
-        $view_count = $post->view_count + 1;
-        $post->update(['view_count' => $view_count]);
+    public function postDetail(Category $category, Post $post, Request $request) {
+        // $post->increment('view_count');
 
-        return view('web.sections.posts.detail')->with([
-            'post' => $post,
-        ]);
+        // return view('web.sections.posts.detail')->with([
+        //     'post' => $post,
+        // ]);
+
+        if (! Auth::check()) { //guest user identified by ip
+            $cookie_name = (Str::replace('.','',($request->ip())).'-'. $post->id);
+        } else {
+            $cookie_name = (Auth::user()->id.'-'. $post->id); //logged in user
+        }
+
+        $newer_posts = $this->postRepos->getNewerPosts($post)->sortByDesc('published_at')->take(-10);
+        $older_posts = $this->postRepos->getOlderPosts($post)->sortByDesc('published_at')->take(10);
+
+        if (Cookie::get($cookie_name) == '') { //check if cookie is set
+            $cookie = cookie($cookie_name, '1', 60); //set the cookie
+            $post->increment('view_count'); //count the view
+            return response()->view('web.sections.posts.detail',[
+                'post' => $post,
+                'newer_posts' => $newer_posts,
+                'older_posts' => $older_posts,
+            ])->withCookie($cookie); //store the cookie
+        } else {
+            return  view('web.sections.posts.detail')->with([
+                'post' => $post,
+                'newer_posts' => $newer_posts,
+                'older_posts' => $older_posts,
+            ]); //this view is not counted
+        }
     }
 
     public function organs() {

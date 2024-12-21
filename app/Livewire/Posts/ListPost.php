@@ -42,7 +42,7 @@ class ListPost extends Component
 
     public function render()
     {
-        $posts = $this->postRepos->filter($this->params, $this->paginate);
+        $posts = $this->postRepos->filter($this->params)->sortByDesc('published_at')->paginate($this->paginate);
         return view('admin.sections.posts.livewire.list-post')->with(['posts' => $posts]);
     }
 }

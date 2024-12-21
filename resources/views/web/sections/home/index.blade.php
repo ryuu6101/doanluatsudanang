@@ -2,6 +2,9 @@
 
 @section('title', 'doanluatsudanang')
 
+@php($current_time = now()->locale('vi')->translatedFormat('l, d/m/Y, H:i'))
+@section('current_time', ucfirst($current_time))
+
 @section('contents')
 
 @if ($hot_news->count() > 0)
