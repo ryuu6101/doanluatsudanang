@@ -60,7 +60,7 @@
 @endif
 
 @foreach ($categories as $category)
-@php ($posts = $category->posts->sortByDesc('published_at'))
+@php ($posts = $category->posts->sortByDesc('published_at')->take(3))
 @continue($posts->count() <= 0)
 <div class="news_column">
     <div class="panel panel-default clearfix">

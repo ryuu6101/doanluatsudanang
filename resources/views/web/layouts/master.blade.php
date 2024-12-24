@@ -22,6 +22,7 @@
     <link rel="preload" as="script" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/bootstrap.min.js') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/bootstrap.non-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/bootstrap-theme.min.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/doanluatsudanang/css/style.non-responsive.css') }}">
@@ -85,6 +86,7 @@
     <script src="{{ asset('doanluatsudanang/assets/js/language/vi.js') }}"></script>
     <script src="{{ asset('doanluatsudanang/assets/js/global.js') }}"></script>
     <script src="{{ asset('doanluatsudanang/themes/default/js/page.js') }}"></script>
+    <script src="{{ asset('doanluatsudanang/themes/default/js/news.js') }}"></script>
     <script src="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/main.js') }}"></script>
     <script src="{{ asset('doanluatsudanang/themes/doanluatsudanang/js/custom.js') }}"></script>
     <script type="application/ld+json">

@@ -78,4 +78,8 @@ abstract class BaseRepository implements RepositoryInterface
         if ($paginate > 0) return $list->paginate($paginate);
         else return $list->get();
     }
+
+    public function updateOrCreate($attributes, $params) {
+        return $this->model->updateOrCreate($attributes, $params);
+    }
 }

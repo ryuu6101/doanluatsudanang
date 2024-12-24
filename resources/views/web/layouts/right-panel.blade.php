@@ -7,7 +7,7 @@
         </div>
         <div class="panel-body">
             <ul class="block_tophits list-none list-items">
-                @php($right_panel_posts = $postRepos->getAll()->take(10)->sortByDesc('view_count'))
+                @php($right_panel_posts = $postRepos->getPublicPosts()->take(10)->sortByDesc('view_count'))
                 @if($right_panel_posts->count() > 0)
                 @foreach ($right_panel_posts as $right_panel_post)
                 @php($post_url = route('post.detail', ['category' => $right_panel_post->category, 'post' => $right_panel_post]))

@@ -8,18 +8,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Posts\PostRepositoryInterface;
 use App\Repositories\Categories\CategoryRepositoryInterface;
+use App\Repositories\Attachments\AttachmentRepositoryInterface;
 
 class PostController extends Controller
 {
     protected $categoryRepos;
     protected $postRepos;
+    protected $attachmentRepos;
 
     public function __construct(
         CategoryRepositoryInterface $categoryRepos,
         PostRepositoryInterface $postRepos,
+        AttachmentRepositoryInterface $attachmentRepos,
     ) {
         $this->categoryRepos = $categoryRepos;
         $this->postRepos = $postRepos;
+        $this->attachmentRepos = $attachmentRepos;
     }
 
     /**
@@ -79,7 +83,20 @@ class PostController extends Controller
             $message = 'Đã lưu bản nháp bài viết';
         }
 
-        $this->postRepos->create($params);
+        $post = $this->postRepos->create($params);
+
+        if ($request->input('attachments')) {
+            $index = 1;
+            foreach ($request->input('attachments') as $name => $file) {
+                $file = str_replace(asset(''), '', $file);
+                $this->attachmentRepos->create([
+                    'name' => $name,
+                    'file' => $file,
+                    'post_id' => $post->id,
+                    'index' => $index++,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.posts.index')->with('noty', [
             'type' => 'success',
@@ -153,6 +170,25 @@ class PostController extends Controller
 
         $post = $this->postRepos->find($id);
         $post->update($params);
+
+        if ($request->input('attachments')) {
+            $attachment_ids = [];
+            $index = 1;
+            foreach ($request->input('attachments') as $name => $file) {
+                $file = str_replace(asset(''), '', $file);
+                $attachment = $this->attachmentRepos->updateOrCreate([
+                    'name' => $name,
+                    'file' => $file,
+                    'post_id' => $id,
+                ],[
+                    'index' => $index++,
+                ]);
+
+                $attachment_ids[] = $attachment->id;
+            }
+
+            $post->attachments()->whereNotIn('id', $attachment_ids)->delete();
+        }
 
         return redirect()->route('admin.posts.index')->with('noty', [
             'type' => 'success',

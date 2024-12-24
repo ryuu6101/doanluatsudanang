@@ -2,6 +2,15 @@
 
 @section('title', $post->title)
 
+@push('styles')
+<style>
+    #news-bodyhtml img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+@endpush
+
 @section('contents')
 
 <div class="news_column panel panel-default" itemtype="http://schema.org/NewsArticle" itemscope="">
@@ -35,14 +44,44 @@
                 <div class="hometext m-bottom" itemprop="description">{{ $post->description }}</div>
                 <figure class="article center">
                     @if ($post->thumbnail)
-                    <img alt="{{ $post->title }}" src="{{ url($post->thumbnail) }}" class="img-thumbnail">
-                    <figcaption>{{ $post->title }}</figcaption>
+                    <img alt="{{ $post->title }}" src="{{ url($post->thumbnail) }}" class="img-thumbnail" style="max-width: 460px">
+                    {{-- <figcaption>{{ $post->title }}</figcaption> --}}
                     @else
-                    {{-- <img alt="" src="{{ asset('images/placeholders/placeholder.png') }}" class="img-thumbnail"> --}}
+                    {{-- <img alt="" src="{{ asset('images/placeholders/placeholder.png') }}" class="img-thumbnail" width="460"> --}}
                     @endif
                 </figure>
             </div>
         <div id="news-bodyhtml" class="bodytext margin-bottom-lg">{!! $post->contents !!}</div>
+
+        @if ($post->attachments->count() > 0)
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-download fa-fw"></i><strong>File đính kèm</strong>
+            </div>
+            <div class="list-group news-download-file">
+                @foreach ($post->attachments->sortBy('index') as $attachment)
+                <div class="list-group-item">
+                    <span class="badge">
+                        <a role="button" data-toggle="collapse" href="#pdf_{{ $attachment->id }}" aria-expanded="false"
+                        style="display:inline-block; padding-top: .45rem">
+                            <i class="fa fa-file-pdf-o" data-rel="tooltip" data-content="Xem trước"></i>
+                        </a>
+                    </span>
+                    <a href="{{ asset($attachment->file) }}" title="{{ $attachment->name }}" download="">
+                        Tập tin {{ $loop->iteration }}: 
+                        <strong>{{ $attachment->name }}</strong>
+                    </a>
+                    <div class="clearfix"></div>
+                    <div class="collapse" id="pdf_{{ $attachment->id }}" data-src="{{ asset($attachment->file) }}" data-toggle="collapsepdf">
+                        <div class="well margin-top">
+                            <iframe frameborder="0" height="600" scrolling="yes" src="" width="100%"></iframe>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 

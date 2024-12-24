@@ -85,7 +85,7 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
                 <div class="card-header bg-white py-2"><strong>Ảnh bìa</strong></div>
                 <div class="card-body">
                     <input type="hidden" name="thumbnail" id="thumbnail" value="{{ old('thumbnail') ?? $post->thumbnail }}">
-                    <a href="javascript:open_filemanager('thumbnail')">
+                    <a href="javascript:open_filemanager('thumbnail', 1)">
                         @if (old('thumbnail'))
                         <img src="{{ old('thumbnail') }}" alt="" class="img-fluid w-100 rounded thumbnail-preview border">
                         @elseif ($post->thumbnail)
@@ -112,6 +112,34 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
                     @else
                     <select name="category_id" class="custom-select" disabled></select>
                     @endif
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header bg-white py-2">
+                    <input type="hidden" id="attachment">
+                    <a href="javascript:open_filemanager('attachment', 2)" class="list-icons-item d-inline">
+                        <strong>File đính kèm</strong>
+                        <i class="icon-attachment float-right"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="row attachment-container">
+                        @if ($post->attachments->count())
+                        @foreach ($post->attachments->sortBy('index') as $attachment)
+                        <div class="col-12 d-flex flex-nowrap justify-content-between mb-1">
+                            <strong class="text-nowrap overflow-hidden" style="text-overflow: ellipsis;">
+                                <i class="icon-file-pdf mr-1"></i>
+                                {{ $attachment->name }}
+                            </strong>
+                            <a href="javascript:void(0);" class="text-danger" onclick="this.parentElement.remove()">
+                                <i class="icon-trash"></i>
+                            </a>
+                            <input type="hidden" name="attachments[{{ $attachment->name }}]" 
+                            class="attachment-input" value="{{ $attachment->file }}">
+                        </div>
+                        @endforeach
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,8 +172,10 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
         external_plugins: { "filemanager" : "{{ url('responsive_filemanager/filemanager/plugin.min.js') }}"}
     };
 
-    function open_filemanager(field_id) {
-        var url = "{{ url('responsive_filemanager/filemanager/dialog.php') }}?type=1&popup=1&field_id="+field_id;
+    function open_filemanager(field_id, type) {
+        var url = "{{ url('responsive_filemanager/filemanager/dialog.php') }}?type="+type+"&popup=1&field_id="+field_id;
+        // if (field_id == 'attachment') url = url+"&extensions=[\"pdf\"]";
+
         var w = 880;
         var h = 570;
         var l = Math.floor((screen.width - w) / 2);
@@ -155,7 +185,41 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
 
     function responsive_filemanager_callback(field_id) {
         var url = jQuery('#'+field_id).val();
-        $('.thumbnail-preview').attr('src', url);
+        try {url = JSON.parse(url)} catch (error) {}
+        if (field_id == 'thumbnail') {
+            if (Array.isArray(url)) $('.thumbnail-preview').attr('src', url[0]);
+            else $('.thumbnail-preview').attr('src', url);
+        } else if (field_id == 'attachment') {
+            if (Array.isArray(url)) {
+                url.forEach(add_attachment);
+            } else {
+                add_attachment(url);
+            }
+        }
+    }
+
+    function add_attachment(item) {
+        var attachment_container = $('.attachment-container');
+        var attachments = $('.attachment-input').map(function() {
+            return $(this).val();
+        }).get();
+        if (attachments.includes(item)) return;
+
+        var filename = item.split('\\').pop().split('/').pop();
+        var row = `
+            <div class="col-12 d-flex flex-nowrap justify-content-between mb-1">
+                <strong class="text-nowrap overflow-hidden" style="text-overflow: ellipsis;">
+                    <i class="icon-file-pdf mr-1"></i>
+                    ${filename}
+                </strong>
+                <a href="javascript:void(0);" class="text-danger" onclick="this.parentElement.remove()">
+                    <i class="icon-trash"></i>
+                </a>
+                <input type="hidden" name="attachments[${filename}]" value="${item}" class="attachment-input">
+            </div>
+        `;
+
+        attachment_container.append(row);
     }
 
     $(document).ready(function() {
