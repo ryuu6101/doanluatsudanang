@@ -161,11 +161,21 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
         toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect", 
         toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor | print preview code ", 
         image_advtab: true,
-        image_prepend_url: "{{ asset('') }}",
+        // image_prepend_url: "{{ asset('') }}",
+        relative_urls : false,
         image_class_list: [
             { title: 'Full width', value: 'full-width-img' },
             { title: 'None', value: '' },
         ],
+        content_style: `
+            body {
+                padding-bottom: 10rem;
+            }
+            img {
+                width: 100%;
+                height: auto;
+            }
+        `,
         
         external_filemanager_path:"{{ url('responsive_filemanager/filemanager') }}/", 
         filemanager_title:"Trình quản lý tệp" , 

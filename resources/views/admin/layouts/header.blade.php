@@ -1,5 +1,5 @@
 <div class="page-header page-header-light">
-    <div class="page-header-content header-elements-lg-inline">
+    <div class="page-header-content header-elements-lg-inline d-none">
         <div class="page-title d-flex">
             <h4><i class="icon-arrow-left52 mr-2"></i> <spa class="font-weight-semibold">{{ $menu['title'] ?? '' }}</h4>
             {{-- <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a> --}}

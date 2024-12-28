@@ -101,12 +101,12 @@
     <script type="text/javascript" src="{{ asset('doanluatsudanang/assets/js/language/jquery.ui.datepicker-vi.js') }}"></script>
     <script type="text/javascript" src="{{ asset('doanluatsudanang/themes/default/js/users.js') }}"></script>
     <script type="text/javascript" src="{{ asset('doanluatsudanang/themes/default/js/organs.js') }}"></script>
-    {{-- <script type="text/javascript" data-show="after">
+    <script type="text/javascript" data-show="after">
         $(function() {
             checkWidthMenu();
             $(window).resize(checkWidthMenu);
         });
-    </script> --}}
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {$("[data-rel='block_news_tooltip'][data-content!='']").tooltip({
             placement: "bottom",

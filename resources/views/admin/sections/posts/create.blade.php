@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-7">
                             <input type="text" name="published_at" class="form-control form-control-sm datepicker cursor-pointer" 
-                            value="{{ old('published_at') ?? '' }}" readonly placeholder=" Bây giờ">
+                            value="{{ old('published_at') ?? '' }}" placeholder=" Bây giờ">
                         </div>
                     </div>
                 </div>
@@ -122,6 +122,15 @@
             { title: 'Full width', value: 'full-width-img' },
             { title: 'None', value: '' },
         ],
+        content_style: `
+            body {
+                padding-bottom: 10rem;
+            }
+            img {
+                width: 100%;
+                height: auto;
+            }
+        `,
         
         external_filemanager_path:"{{ url('responsive_filemanager/filemanager') }}/", 
         filemanager_title:"Trình quản lý tệp" , 
@@ -130,7 +139,6 @@
 
     function open_filemanager(field_id, type) {
         var url = "{{ url('responsive_filemanager/filemanager/dialog.php') }}?type="+type+"&popup=1&field_id="+field_id;
-        // if (field_id == 'attachment') url = url+"&extensions=[\"pdf\"]";
 
         var w = 880;
         var h = 570;
