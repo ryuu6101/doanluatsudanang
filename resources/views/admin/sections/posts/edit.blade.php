@@ -23,7 +23,7 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
                     @error('title')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
-                    <textarea name="description" class="form-control mt-2 mb-2" placeholder="Mô tả"
+                    <textarea name="description" class="form-control mt-2 mb-2" placeholder="Giới thiệu"
                     style="min-height: 5rem">{{ old('description') ?? $post->description }}</textarea>
                     <textarea name="contents" class="form-control editor" id="contents">{!! old('contents') ?? $post->contents !!}</textarea>
                 </div>
@@ -87,14 +87,20 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
                     <input type="hidden" name="thumbnail" id="thumbnail" value="{{ old('thumbnail') ?? $post->thumbnail }}">
                     <a href="javascript:open_filemanager('thumbnail', 1)">
                         @if (old('thumbnail'))
-                        <img src="{{ old('thumbnail') }}" alt="" class="img-fluid w-100 rounded thumbnail-preview border">
+                        <img src="{{ old('thumbnail') }}" alt="" class="img-fluid w-100 rounded thumbnail-preview border mb-2">
                         @elseif ($post->thumbnail)
-                        <img src="{{ asset($post->thumbnail) }}" alt="" class="img-fluid w-100 rounded thumbnail-preview border">
+                        <img src="{{ asset($post->thumbnail) }}" alt="" class="img-fluid w-100 rounded thumbnail-preview border mb-2">
                         @else
                         <img src="{{ asset('images/placeholders/placeholder.png') }}" alt="" 
-                        class="img-fluid w-100 rounded thumbnail-preview border">
+                        class="img-fluid w-100 rounded thumbnail-preview border mb-2">
                         @endif
                     </a>
+                    <input type="text" name="thumbnail_description" class="form-control mb-2" placeholder="Mô tả">
+                    <select name="thumbnail_position" class="custom-select mb-2">
+                        <option value="0">Không hiển thị</option>
+                        <option value="1">Hiển thị bên trái phần mở đầu</option>
+                        <option value="2" selected>Hiển thị dưới phần mở đầu</option>
+                    </select>
                 </div>
             </div>
             <div class="card">

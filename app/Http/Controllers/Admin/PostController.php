@@ -65,6 +65,8 @@ class PostController extends Controller
             'category_id' => 'nullable',
             'contents' => 'nullable',
             'public' => 'nullable',
+            'thumbnail_description' => 'nullable',
+            'thumbnail_position' => 'nullable',
         ],[
             'title.required' => 'Chưa nhập tiêu đề'
         ]);
@@ -146,6 +148,8 @@ class PostController extends Controller
             'category_id' => 'nullable',
             'contents' => 'nullable',
             'public' => 'nullable',
+            'thumbnail_description' => 'nullable',
+            'thumbnail_position' => 'nullable',
         ],[
             'title.required' => 'Chưa nhập tiêu đề'
         ]);

@@ -40,23 +40,33 @@
                 </ul>
             </div>
         </div>
+            @if ($post->thumbnail_position == 1)
+            <div class="clearfix">
+                <figure class="article left noncaption pointer" style="width:100px;">
+                    <p class="text-center">
+                        @if ($post->thumbnail)
+                        <img alt="{{ $post->title }}" src="{{ url($post->thumbnail) }}" class="img-thumbnail">
+                        @else
+                        <img alt="" src="{{ asset('images/placeholders/placeholder.png') }}" class="img-thumbnail">
+                        @endif
+                    </p>
+                    <figcaption>{{ $post->thumbnail_description }}</figcaption>
+                </figure>
+                <div class="hometext m-bottom" itemprop="description"></div>
+            </div>
+            @elseif ($post->thumbnail_position == 2)
             <div class="clearfix">
                 <div class="hometext m-bottom" itemprop="description">{{ $post->description }}</div>
                 <figure class="article center">
                     @if ($post->thumbnail)
                     <img alt="{{ $post->title }}" src="{{ url($post->thumbnail) }}" class="img-thumbnail" style="max-width: 460px">
-                    {{-- <figcaption>{{ $post->title }}</figcaption> --}}
                     @else
-                    {{-- <img alt="" src="{{ asset('images/placeholders/placeholder.png') }}" class="img-thumbnail" width="460"> --}}
+                    <img alt="" src="{{ asset('images/placeholders/placeholder.png') }}" class="img-thumbnail" width="460">
                     @endif
+                    <figcaption>{{ $post->thumbnail_description }}</figcaption>
                 </figure>
             </div>
-            {{-- <div class="clearfix">
-                <figure class="article left noncaption pointer" style="width:100px;" onclick="modalShowByObj(this);">
-                    <p class="text-center"><img alt="Chi bộ 1 thuộc Đảng bộ Đoàn Luật sư thành phố Đà Nẵng tổ chức Lễ Kết nạp Đảng viên cho Quần chúng ưu tú Trần Thị Ngọc Ánh." src="/uploads/news/2024_08/image-20240813155114-1.jpeg" class="img-thumbnail"></p>
-                </figure>
-                <div class="hometext m-bottom" itemprop="description"></div>
-            </div> --}}
+            @endif
         <div id="news-bodyhtml" class="bodytext margin-bottom-lg">{!! $post->contents !!}</div>
 
         @if ($post->attachments->count() > 0)
