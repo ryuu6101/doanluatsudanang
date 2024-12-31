@@ -105,6 +105,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('admin.contact-mails.index') }}" class="nav-link contact-mails">
+                        <i class="icon-envelop3"></i>
+                        <span>Liên hệ</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('admin.file-manager.index') }}" class="nav-link file-manager">
                         <i class="icon-files-empty"></i>
                         <span>Quản lý file</span>

@@ -23,6 +23,8 @@ class Post extends Model
         'published_at',
         'public',
         'user_id',
+        'thumbnail_description',
+        'thumbnail_position',
     ];
 
     protected $casts = ['published_at' => 'datetime'];

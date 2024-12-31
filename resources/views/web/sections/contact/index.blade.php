@@ -36,38 +36,39 @@
             <div class="panel-heading">Gửi phản hồi</div>
             <div class="panel-body loadContactForm">
                 <div class="nv-fullbg">
-                    <form method="post" action="#!" onsubmit="return nv_validForm(this);" novalidate="">
-                        <div class="form-group">
+                    <form method="post" action="{{ route('contact.send') }}" onsubmit="return nv_validForm(this);" novalidate="">
+                        @method('POST')
+                        @csrf
+                        {{-- <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <em class="fa fa-folder-open fa-lg fa-horizon">
-                                    </em>
+                                    <em class="fa fa-folder-open fa-lg fa-horizon"></em>
                                 </span>
-                                <select class="form-control" name="fcat">
-                                    <option value="0">
+                                <select class="form-control" name="subject">
+                                    <option value="">
                                         Chủ đề bạn quan tâm
                                     </option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <em class="fa fa-file-text fa-lg fa-horizon">
                                     </em>
                                 </span>
-                                <input type="text" maxlength="255" class="form-control required" value="" name="ftitle" placeholder="Tiêu đề" 
+                                <input type="text" maxlength="255" class="form-control required" value="" name="title" placeholder="Tiêu đề" 
                                 data-pattern="/^(.){3,}$/" onkeypress="nv_validErrorHidden(this);" data-mess="Vui lòng nhập tiêu đề">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><em class="fa fa-user fa-lg fa-horizon"></em></span>
-                                <input type="text" maxlength="100" value="" name="fname" class="form-control required" placeholder="Họ và tên" 
+                                <input type="text" maxlength="100" value="" name="fullname" class="form-control required" placeholder="Họ và tên" 
                                 data-pattern="/^(.){3,}$/" onkeypress="nv_validErrorHidden(this);" data-mess="Vui lòng nhập họ và tên">
-                                <span class="input-group-addon pointer" title="Đăng nhập" onclick="return loginForm('');">
+                                {{-- <span class="input-group-addon pointer" title="Đăng nhập" onclick="return loginForm('');">
                                     <em class="fa fa-sign-in fa-lg"></em>
-                                </span>
+                                </span> --}}
                             </div>
                         </div>
                         <div class="form-group">
@@ -75,7 +76,7 @@
                                 <span class="input-group-addon">
                                     <em class="fa fa-envelope fa-lg fa-horizon"></em>
                                 </span>
-                                <input type="email" maxlength="60" value="" name="femail" class="form-control required" placeholder="Email" 
+                                <input type="email" maxlength="60" value="" name="email" class="form-control required" placeholder="Email" 
                                 onkeypress="nv_validErrorHidden(this);" data-mess="Vui lòng nhập email khả dụng">
                             </div>
                         </div>
@@ -84,7 +85,7 @@
                                 <span class="input-group-addon">
                                     <em class="fa fa-phone fa-lg fa-horizon"></em>
                                 </span>
-                                <input type="text" maxlength="60" value="" name="fphone" class="form-control" placeholder="Điện thoại">
+                                <input type="text" maxlength="60" value="" name="phone" class="form-control" placeholder="Điện thoại">
                             </div>
                         </div>
                         <div class="form-group">
@@ -92,16 +93,16 @@
                                 <span class="input-group-addon">
                                     <em class="fa fa-home fa-lg fa-horizon"></em>
                                 </span>
-                                <input type="text" maxlength="60" value="" name="faddress" class="form-control" placeholder="Địa chỉ">
+                                <input type="text" maxlength="60" value="" name="address" class="form-control" placeholder="Địa chỉ">
                             </div>
                         </div>
                         <div class="form-group">
                             <div>
-                                <textarea cols="8" name="fcon" class="form-control required" maxlength="1000" placeholder="Nội dung" 
+                                <textarea cols="8" name="contents" class="form-control required" maxlength="1000" placeholder="Nội dung" 
                                 onkeypress="nv_validErrorHidden(this);" data-mess="Vui lòng nhập nội dung"></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <div class="middle text-right clearfix">
                                 <img width="150" height="40" title="Mã bảo mật" alt="Mã bảo mật" src="/index.php?scaptcha=captcha&amp;t=1734614882" 
                                 class="captchaImg display-inline-block">
@@ -110,9 +111,8 @@
                                 class="fcode required form-control display-inline-block" style="width:100px;" data-pattern="/^(.){6,6}$/" 
                                 onkeypress="nv_validErrorHidden(this);" data-mess="Vui lòng nhập đúng mã bảo mật mà bạn thấy trong hình">
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="text-center form-group">
-                            <input type="hidden" name="checkss" value="0200eef9e39f634425a31611e975eb6b">
                             <input type="button" value="Nhập lại" class="btn btn-default" onclick="nv_validReset(this.form);return!1;">
                             <input type="submit" value="Gửi đi" name="btsend" class="btn btn-primary">
                         </div>

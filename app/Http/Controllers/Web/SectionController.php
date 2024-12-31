@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Cookie;
 use App\Repositories\Posts\PostRepositoryInterface;
 use App\Repositories\Lawyers\LawyerRepositoryInterface;
 use App\Repositories\Categories\CategoryRepositoryInterface;
+use App\Repositories\ContactMails\ContactMailRepositoryInterface;
 use App\Repositories\Organizations\OrganizationRepositoryInterface;
 
 class SectionController extends Controller
@@ -23,17 +24,20 @@ class SectionController extends Controller
     protected $postRepos;
     protected $organizationRepos;
     protected $lawyerRepos;
+    protected $contactMailRepos;
 
     public function __construct(
         CategoryRepositoryInterface $categoryRepos,
         PostRepositoryInterface $postRepos,
         OrganizationRepositoryInterface $organizationRepos,
         LawyerRepositoryInterface $lawyerRepos,
+        ContactMailRepositoryInterface $contactMailRepos,
     ) {
         $this->categoryRepos = $categoryRepos;
         $this->postRepos = $postRepos;
         $this->organizationRepos = $organizationRepos;
         $this->lawyerRepos = $lawyerRepos;
+        $this->contactMailRepos = $contactMailRepos;
     }
 
     public function home() {
@@ -125,6 +129,14 @@ class SectionController extends Controller
         $menu = ['navbar' => 'lien-he'];
 
         return view('web.sections.contact.index')->with(['menu' => $menu]);
+    }
+
+    public function sendContactMail(Request $request) {
+        $params = $request->input();
+        unset($params['_method']);
+        unset($params['_token']);
+        
+        $this->contactMailRepos->create($params);
     }
 
     public function documents() {

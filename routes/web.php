@@ -38,6 +38,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('organizations', [AdminController::class, 'organizations'])->name('admin.organizations.index');
         Route::get('lawyers', [AdminController::class, 'lawyers'])->name('admin.lawyers.index');
         Route::resource('lawyer', LawyerController::class);
+        Route::get('contact-mails', [AdminController::class, 'contactMails'])->name('admin.contact-mails.index');
+        Route::get('response/{contact_mail:id}', [AdminController::class, 'response'])->name('admin.response.index');
+        Route::post('response', [AdminController::class, 'sendResponse'])->name('admin.response.send');
         Route::get('file-manager', [AdminController::class, 'fileManager'])->name('admin.file-manager.index');
         Route::get('site-config', [AdminController::class, 'siteConfig'])->name('admin.site-config.index');
     });
@@ -46,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/', [WebController::class, 'home'])->name('home.index');
 Route::get('/about', [WebController::class, 'about'])->name('about.index');
 Route::get('/contact', [WebController::class, 'contact'])->name('contact.index');
+Route::post('/contact', [WebController::class, 'sendContactMail'])->name('contact.send');
 Route::get('/van-ban-phap-luat', [WebController::class, 'documents'])->name('documents.index');
 Route::get('/van-ban-phap-luat/{document:slug}', [WebController::class, 'documentDetail'])->name('document.detail');
 Route::get('/organs', [WebController::class, 'organs'])->name('organs.index');

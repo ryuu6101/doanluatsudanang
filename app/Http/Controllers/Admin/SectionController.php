@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Mail\ResponseEmail;
+use App\Models\ContactMail;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class SectionController extends Controller
 {
@@ -70,6 +73,41 @@ class SectionController extends Controller
         ];
 
         return view('admin.sections.lawyers.index')->with(['menu' => $menu]);
+    }
+
+    public function contactMails() {
+        $menu = [
+            'sidebar' => 'contact-mails',
+            'title' => 'Liên hệ',
+            'breadcrumb' => ['Liên hệ'],
+        ];
+
+        return view('admin.sections.contact-mails.index')->with(['menu' => $menu]);
+    }
+
+    public function response(?ContactMail $contact_mail = null) {
+        $menu = [
+            'sidebar' => 'contact-mails',
+            'title' => 'Liên hệ',
+            'breadcrumb' => ['Liên hệ'],
+        ];
+
+        return view('admin.sections.contact-mails.response')->with([
+            'menu' => $menu,
+            'contact_mail' => $contact_mail,
+        ]);
+    }
+
+    public function sendResponse(Request $request) {
+        Mail::to($request->input('email'))->send(new ResponseEmail([
+            'title' => $request->input('title'),
+            'contents' => $request->input('contents'),
+        ]));
+
+        return redirect()->route('admin.contact_mails.index')->with('noty', [
+            'type' => 'success',
+            'message' => 'Đã gửi phản hồi',
+        ]);
     }
 
     public function fileManager() {

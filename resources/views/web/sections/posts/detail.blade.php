@@ -51,6 +51,12 @@
                     @endif
                 </figure>
             </div>
+            {{-- <div class="clearfix">
+                <figure class="article left noncaption pointer" style="width:100px;" onclick="modalShowByObj(this);">
+                    <p class="text-center"><img alt="Chi bộ 1 thuộc Đảng bộ Đoàn Luật sư thành phố Đà Nẵng tổ chức Lễ Kết nạp Đảng viên cho Quần chúng ưu tú Trần Thị Ngọc Ánh." src="/uploads/news/2024_08/image-20240813155114-1.jpeg" class="img-thumbnail"></p>
+                </figure>
+                <div class="hometext m-bottom" itemprop="description"></div>
+            </div> --}}
         <div id="news-bodyhtml" class="bodytext margin-bottom-lg">{!! $post->contents !!}</div>
 
         @if ($post->attachments->count() > 0)
