@@ -50,9 +50,9 @@
                         <img alt="" src="{{ asset('images/placeholders/placeholder.png') }}" class="img-thumbnail">
                         @endif
                     </p>
-                    <figcaption>{{ $post->thumbnail_description }}</figcaption>
+                    {{-- <figcaption>{{ $post->thumbnail_description }}</figcaption> --}}
                 </figure>
-                <div class="hometext m-bottom" itemprop="description"></div>
+                <div class="hometext m-bottom" itemprop="description">{{ $post->description }}</div>
             </div>
             @elseif ($post->thumbnail_position == 2)
             <div class="clearfix">

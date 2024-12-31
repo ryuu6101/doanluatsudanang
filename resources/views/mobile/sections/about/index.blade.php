@@ -1,4 +1,4 @@
-@extends('web.layouts.master')
+@extends('mobile.layouts.master')
 
 @section('title', 'Giới thiệu')
 
