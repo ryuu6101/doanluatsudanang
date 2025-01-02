@@ -65,11 +65,13 @@
                         @php($img_url = old('thumbnail') ?? asset('images/placeholders/placeholder.png'))
                         <img src="{{ $img_url }}" alt="" class="img-fluid w-100 rounded thumbnail-preview border mb-2">
                     </a>
-                    <input type="text" name="thumbnail_description" class="form-control mb-2" placeholder="Mô tả">
+                    <input type="text" name="thumbnail_description" class="form-control mb-2" 
+                    placeholder="Mô tả" value="{{ old('thumbnail_description') }}">
+                    @php($thumbnail_position = old('thumbnail_position') ?? 2)
                     <select name="thumbnail_position" class="custom-select mb-2">
-                        <option value="0">Không hiển thị</option>
-                        <option value="1">Hiển thị bên trái phần mở đầu</option>
-                        <option value="2" selected>Hiển thị dưới phần mở đầu</option>
+                        <option value="0" {{ $thumbnail_position == 0 ? 'selected' : '' }}>Không hiển thị</option>
+                        <option value="1" {{ $thumbnail_position == 1 ? 'selected' : '' }}>Hiển thị bên trái phần mở đầu</option>
+                        <option value="2" {{ $thumbnail_position == 2 ? 'selected' : '' }}>Hiển thị dưới phần mở đầu</option>
                     </select>
                 </div>
             </div>
