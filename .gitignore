@@ -3,6 +3,8 @@
 /public/build
 /public/hot
 /public/storage
+/public/responsive_filemanager/source
+/public/responsive_filemanager/thumbs
 /storage/*.key
 /vendor
 .env
