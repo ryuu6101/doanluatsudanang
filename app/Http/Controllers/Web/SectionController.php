@@ -86,13 +86,13 @@ class SectionController extends Controller
         if (Cookie::get($cookie_name) == '') { //check if cookie is set
             $cookie = cookie($cookie_name, '1', 60); //set the cookie
             $post->increment('view_count'); //count the view
-            return response()->view('mobile.sections.posts.detail',[
+            return response()->view('web.sections.posts.detail',[
                 'post' => $post,
                 'newer_posts' => $newer_posts,
                 'older_posts' => $older_posts,
             ])->withCookie($cookie); //store the cookie
         } else {
-            return  view('mobile.sections.posts.detail')->with([
+            return  view('web.sections.posts.detail')->with([
                 'post' => $post,
                 'newer_posts' => $newer_posts,
                 'older_posts' => $older_posts,
