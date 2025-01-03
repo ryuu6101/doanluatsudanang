@@ -70,9 +70,9 @@
                                         <td class="text-center">{{ $post->category->name ?? '' }}</td>
                                         <td class="text-center">
                                             @if (!$post->published_at)
-                                            <span class="badge badge-sm badge-secondary">Nháp</span>
+                                            <span class="badge badge-sm badge-secondary">Chưa xuất bản</span>
                                             @elseif ($post->public)
-                                            <span class="badge badge-sm badge-success">Đã đăng</span>
+                                            <span class="badge badge-sm badge-success">Đã xuất bản</span>
                                             @else
                                             <span class="badge badge-sm badge-danger">Đã ẩn</span>
                                             @endif

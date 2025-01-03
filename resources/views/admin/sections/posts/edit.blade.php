@@ -31,7 +31,7 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
         </div>
         <div class="col-3">
             <div class="card">
-                <div class="card-header bg-white py-2"><strong>Đăng bài</strong></div>
+                <div class="card-header bg-white py-2"><strong>Xuất bản</strong></div>
                 <div class="card-body px-2">
                     <div class="row">
                         <div class="col-5 col-form-label">
