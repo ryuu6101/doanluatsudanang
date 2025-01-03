@@ -63,7 +63,7 @@
                     <input type="hidden" name="thumbnail" id="thumbnail" value="{{ old('thumbnail') }}">
                     <a href="javascript:open_filemanager('thumbnail', 1)">
                         @php($img_url = old('thumbnail') ?? asset('images/placeholders/placeholder.png'))
-                        <img src="{{ $img_url }}" alt="" class="img-fluid w-100 rounded thumbnail-preview border mb-2">
+                        <img src="{{ $img_url }}" alt="thumbnail" class="img-fluid w-100 rounded thumbnail-preview border mb-2">
                     </a>
                     <input type="text" name="thumbnail_description" class="form-control mb-2" 
                     placeholder="Mô tả" value="{{ old('thumbnail_description') }}">
@@ -115,7 +115,7 @@
 <script src="{{ asset('tinymce/js/tinymce/tinymce.min.js') }}"></script>
 <script>
     var tinymce_options = { 
-        selector: ".editor",theme: "modern",width: '100%',height: 500, 
+        selector: ".editor",theme: "modern",width: '100%',height: 480, 
         plugins: [ 
             "advlist autolink link image lists charmap print preview hr anchor pagebreak", 
             "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking", 
@@ -133,6 +133,7 @@
         content_style: `
             body {
                 padding-bottom: 10rem;
+                overscroll-behavior: none;
             }
             img {
                 width: 100%;
@@ -145,8 +146,15 @@
         external_plugins: { "filemanager" : "{{ url('responsive_filemanager/filemanager/plugin.min.js') }}"} 
     };
 
+    let first_visit = true;
     function open_filemanager(field_id, type) {
-        var url = "{{ url('responsive_filemanager/filemanager/dialog.php') }}?type="+type+"&popup=1&field_id="+field_id;
+        var url = "{{ url('responsive_filemanager/filemanager/dialog.php') }}?type="
+                    +type+"&popup=1&field_id="+field_id;
+
+        if (first_visit) {
+            url = url+"&fldr=uploads/news/&sort_by=name&descending=0";
+            first_visit = false;
+        }
 
         var w = 880;
         var h = 570;

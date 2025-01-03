@@ -40,7 +40,11 @@
                 </ul>
             </div>
         </div>
-            @if ($post->thumbnail_position == 1)
+            @if ($post->thumbnail_position == 0)
+            <div class="clearfix">
+                <div class="hometext m-bottom" itemprop="description">{{ $post->description }}</div>
+            </div>
+            @elseif ($post->thumbnail_position == 1)
             <div class="clearfix">
                 <figure class="article left noncaption pointer" style="width:100px;">
                     <p class="text-center">

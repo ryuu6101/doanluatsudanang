@@ -87,9 +87,9 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
                     <input type="hidden" name="thumbnail" id="thumbnail" value="{{ old('thumbnail') ?? $post->thumbnail }}">
                     <a href="javascript:open_filemanager('thumbnail', 1)">
                         @if (old('thumbnail'))
-                        <img src="{{ old('thumbnail') }}" alt="" class="img-fluid w-100 rounded thumbnail-preview border mb-2">
+                        <img src="{{ old('thumbnail') }}" alt="thumbnail" class="img-fluid w-100 rounded thumbnail-preview border mb-2">
                         @elseif ($post->thumbnail)
-                        <img src="{{ asset($post->thumbnail) }}" alt="" class="img-fluid w-100 rounded thumbnail-preview border mb-2">
+                        <img src="{{ asset($post->thumbnail) }}" alt="thumbnail" class="img-fluid w-100 rounded thumbnail-preview border mb-2">
                         @else
                         <img src="{{ asset('images/placeholders/placeholder.png') }}" alt="" 
                         class="img-fluid w-100 rounded thumbnail-preview border mb-2">
@@ -160,7 +160,7 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
 <script src="{{ asset('tinymce/js/tinymce/tinymce.min.js') }}"></script>
 <script>
     var tinymce_options = { 
-        selector: ".editor",theme: "modern",width: '100%',height: 500, 
+        selector: ".editor",theme: "modern",width: '100%',height: 480, 
         plugins: [ 
             "advlist autolink link image lists charmap print preview hr anchor pagebreak", 
             "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking", 
@@ -178,6 +178,7 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
         content_style: `
             body {
                 padding-bottom: 10rem;
+                overscroll-behavior: none;
             }
             img {
                 width: 100%;
@@ -190,9 +191,16 @@ onsubmit="return confirm('Bạn có muốn xóa bài viết?');">
         external_plugins: { "filemanager" : "{{ url('responsive_filemanager/filemanager/plugin.min.js') }}"}
     };
 
+    let first_visit = true;
     function open_filemanager(field_id, type) {
-        var url = "{{ url('responsive_filemanager/filemanager/dialog.php') }}?type="+type+"&popup=1&field_id="+field_id;
+        var url = "{{ url('responsive_filemanager/filemanager/dialog.php') }}?type="
+                    +type+"&popup=1&field_id="+field_id;
         // if (field_id == 'attachment') url = url+"&extensions=[\"pdf\"]";
+
+        if (first_visit) {
+            url = url+"&fldr=uploads/news/&sort_by=name&descending=0";
+            first_visit = false;
+        }
 
         var w = 880;
         var h = 570;
