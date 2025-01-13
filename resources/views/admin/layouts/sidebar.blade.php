@@ -104,11 +104,24 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('admin.contact-mails.index') }}" class="nav-link contact-mails">
+                <li class="nav-item nav-item-submenu contact">
+                    <a href="#" class="nav-link">
                         <i class="icon-envelop3"></i>
                         <span>Liên hệ</span>
                     </a>
+
+                    <ul class="nav nav-group-sub">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.contact-mails.index') }}" class="nav-link contact-mails">
+                                Phản hồi
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.mail-config.index') }}" class="nav-link mail-config">
+                                Cấu hình gửi mail
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">

@@ -148,4 +148,42 @@ class SectionController extends Controller
     public function documentDetail(Document $document) {
         return view('web.sections.documents.detail')->with(['document' => $document]);
     }
+
+    public function search(Request $request) {
+        $keyword = $request->input('q');
+
+        $results = $this->postRepos->filter(['keyword' => $keyword])->map(function ($post) use ($keyword) {
+            $post->title = preg_replace('/(' . $keyword . ')/i', "<span class='keyword'>$1</span>", $post->title);
+
+            $description = $post->description;
+            if (strpos($description, $keyword) !== false) {
+                $post->hightlighted = preg_replace('/(' . $keyword . ')/i', "<span class='keyword'>$1</span>", $description);
+                return $post;
+            }
+
+            $max_len = 400;
+            // $contents = strip_tags($post->contents);
+            $contents = strip_tags(html_entity_decode($post->contents, ENT_QUOTES, 'UTF-8'), "\xc2\xa0");
+            $test = $contents;
+            if (($pos = mb_strpos($contents, $keyword)) !== false) {
+                $start = $pos-140 > 0 ? $pos-140 : 0;
+                $contents = ($start>0?'...':'').mb_substr($contents,$start,$max_len).($start+$max_len<strlen($contents)?'...':'');
+                $post->hightlighted = preg_replace('/(' . $keyword . ')/i', "<span class='keyword'>$1</span>", $contents);
+                return $post;
+            }
+
+            if ($description != '') {
+                $post->hightlighted = $description;
+            } else {
+                $post->hightlighted = strlen($contents) > $max_len ? mb_substr($contents,0,$max_len)."..." : $contents;
+            }
+            return $post;
+        })->sortByDesc('published_at')->paginate(10);
+        // dd($results);
+
+        return view('web.sections.search.index')->with([
+            'keyword' => $keyword,
+            'results' => $results,
+        ]);
+    }
 }

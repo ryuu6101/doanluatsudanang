@@ -34,10 +34,10 @@ class SiteConfig extends Component
             'email' => $this->email,
         ];
 
-        if ($config) {
+        if ($config->count() > 0) {
             $config->update($params);
         } else {
-            DB::table('site_config')->create($params);
+            DB::table('site_configs')->insert($params);
         }
 
         $this->dispatch('show-message',

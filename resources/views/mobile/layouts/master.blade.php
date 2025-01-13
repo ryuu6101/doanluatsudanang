@@ -27,6 +27,7 @@
     <link rel="StyleSheet" href="{{ asset('doanluatsudanang/themes/mobile_default/css/users.css') }}">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/themes/mobile_default/css/jquery.metisMenu.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('doanluatsudanang/assets/js/jquery-ui/jquery-ui.min.css') }}" type="text/css">
+    @stack('styles')
 </head>
 <body>
     <div id="mobilePage">
@@ -101,5 +102,7 @@
     </script>
     <script type="text/javascript" src="{{ asset('doanluatsudanang/themes/mobile_default/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('doanluatsudanang/themes/mobile_default/js/contact.js') }}"></script>
+
+    @stack('scripts')
 </body>
 </html>

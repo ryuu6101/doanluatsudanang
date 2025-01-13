@@ -7,9 +7,34 @@ use App\Models\ContactMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Repositories\Posts\PostRepositoryInterface;
+use App\Repositories\Lawyers\LawyerRepositoryInterface;
+use App\Repositories\Categories\CategoryRepositoryInterface;
+use App\Repositories\ContactMails\ContactMailRepositoryInterface;
+use App\Repositories\Organizations\OrganizationRepositoryInterface;
 
 class SectionController extends Controller
 {
+    protected $categoryRepos;
+    protected $postRepos;
+    protected $organizationRepos;
+    protected $lawyerRepos;
+    protected $contactMailRepos;
+
+    public function __construct(
+        CategoryRepositoryInterface $categoryRepos,
+        PostRepositoryInterface $postRepos,
+        OrganizationRepositoryInterface $organizationRepos,
+        LawyerRepositoryInterface $lawyerRepos,
+        ContactMailRepositoryInterface $contactMailRepos,
+    ) {
+        $this->categoryRepos = $categoryRepos;
+        $this->postRepos = $postRepos;
+        $this->organizationRepos = $organizationRepos;
+        $this->lawyerRepos = $lawyerRepos;
+        $this->contactMailRepos = $contactMailRepos;
+    }
+
     public function dashboard() {
         $menu = [
             'sidebar' => 'dashboard',
@@ -17,7 +42,12 @@ class SectionController extends Controller
             'breadcrumb' => ['Trang chủ'],
         ];
 
-        return view('admin.sections.dashboard.index')->with(['menu' => $menu]);
+        $total_post = $this->postRepos->getAll()->count();
+
+        return view('admin.sections.dashboard.index')->with([
+            'menu' => $menu,
+            'total_post' => $total_post,
+        ]);
     }
 
     public function users() {
@@ -77,12 +107,24 @@ class SectionController extends Controller
 
     public function contactMails() {
         $menu = [
+            'submenu' => 'contact',
             'sidebar' => 'contact-mails',
-            'title' => 'Liên hệ',
-            'breadcrumb' => ['Liên hệ'],
+            'title' => 'Phản hồi',
+            'breadcrumb' => ['Liên hệ', 'Phản hồi'],
         ];
 
         return view('admin.sections.contact-mails.index')->with(['menu' => $menu]);
+    }
+
+    public function mailConfig() {
+        $menu = [
+            'submenu' => 'contact',
+            'sidebar' => 'mail-config',
+            'title' => 'Cấu hình gửi mail',
+            'breadcrumb' => ['Liên hệ', 'Cấu hình gửi mail'],
+        ];
+
+        return view('admin.sections.mail-config.index')->with(['menu' => $menu]);
     }
 
     public function response(?ContactMail $contact_mail = null) {
@@ -104,7 +146,7 @@ class SectionController extends Controller
             'contents' => $request->input('contents'),
         ]));
 
-        return redirect()->route('admin.contact_mails.index')->with('noty', [
+        return redirect()->route('admin.contact-mails.index')->with('noty', [
             'type' => 'success',
             'message' => 'Đã gửi phản hồi',
         ]);

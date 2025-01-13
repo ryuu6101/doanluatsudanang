@@ -28,4 +28,10 @@ class PostFilter extends QueryFilter
         $date = Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
         return $this->builder->whereDate('published_at', '<=', $date);
     }
+
+    public function filterKeyword($keyword) {
+        return $this->builder->where('title', 'like', '%' . $keyword . '%')
+                            ->orWhere('description', 'like', '%' . $keyword . '%')
+                            ->orWhere('contents', 'like', '%' . $keyword . '%');
+    }
 }

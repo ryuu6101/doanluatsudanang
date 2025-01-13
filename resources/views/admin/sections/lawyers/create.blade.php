@@ -103,8 +103,15 @@
 
 @push('scripts')
 <script>
+    let first_visit = true;
     function open_filemanager(field_id) {
         var url = "{{ url('responsive_filemanager/filemanager/dialog.php') }}?type=1&popup=1&field_id="+field_id;
+
+        if (first_visit) {
+            url = url+"&fldr=uploads/organs/&sort_by=name&descending=0";
+            first_visit = false;
+        }
+
         var w = 880;
         var h = 570;
         var l = Math.floor((screen.width - w) / 2);
@@ -126,7 +133,7 @@
             autoUpdateInput: false,
             showDropdowns: true,
             opens: 'left',
-            drops: 'auto',
+            drops: 'down',
             locale: {
                 applyLabel: 'OK',
                 cancelLabel: 'Hôm nay',

@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-7">
                             <input type="text" name="published_at" class="form-control form-control-sm datepicker cursor-pointer" 
-                            value="{{ old('published_at') ?? '' }}" placeholder=" Bây giờ">
+                            value="{{ old('published_at') ?? '' }}" placeholder=" Bây giờ" autocomplete="off">
                         </div>
                     </div>
                 </div>

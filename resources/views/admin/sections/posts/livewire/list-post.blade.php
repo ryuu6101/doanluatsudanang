@@ -134,8 +134,8 @@
             }
         }).on('cancel.daterangepicker', function(ev, picker) {
             $(this).val("");
-            @this.set('params.published_date_start', '');
-            @this.set('params.published_date_end', '');
+            @this.set('params.published_date_start', null);
+            @this.set('params.published_date_end', null);
         }).on('apply.daterangepicker', function(ev, picker) {
             var start_date = picker.startDate.format('DD/MM/YYYY');
             var end_date = picker.endDate.format('DD/MM/YYYY');
