@@ -57,5 +57,7 @@ Route::get('/organs', [WebController::class, 'organs'])->name('organs.index');
 Route::get('/organs/vieworg/{organization:slug}', [WebController::class, 'getOrganLawyers'])->name('organ.lawyers.get');
 Route::get('/organs/vieworg/{organization:slug}/{lawyer:slug}', [WebController::class, 'lawyerDetail'])->name('lawyer.detail');
 Route::get('/seek', [WebController::class, 'search'])->name('search.index');
+Route::get('/sendmail/{category:slug}/{post:slug}', [WebController::class, 'sendMailPost'])->name('post.sendmail');
+Route::get('/print/{category:slug}/{post:slug}', [WebController::class, 'printPost'])->name('post.print');
 Route::get('/{category:slug}', [WebController::class, 'getCategoryPosts'])->name('category.posts.get');
 Route::get('/{category:slug}/{post:slug}', [WebController::class, 'postDetail'])->name('post.detail');

@@ -19,6 +19,8 @@ class SiteConfigsTableSeeder extends Seeder
                 'address' => '91 Yên Bái , P.Phước Ninh , Q.Hải Châu , TP.Đà Nẵng',
                 'phone' => '+02362473004',
                 'email' => 'doanluatsu43@gmail.com',
+                'site_name' => 'doanluatsudanang',
+                'site_email' => 'webmaster@doanluatsudanang.viettuyetsilk.com',
             ],
         ];
 

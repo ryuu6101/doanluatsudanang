@@ -15,5 +15,7 @@ class SiteConfig extends Model
         'address',
         'phone',
         'email',
+        'site_name',
+        'site_email',
     ];
 }

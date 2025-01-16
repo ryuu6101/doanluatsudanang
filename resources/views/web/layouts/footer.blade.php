@@ -1,4 +1,3 @@
-@php($site_info = $site_info ?? \Illuminate\Support\Facades\DB::table('site_configs')->first())
 <footer class="section-footer-top" id="footer">
     <div class="wraper">
         <div class="container">

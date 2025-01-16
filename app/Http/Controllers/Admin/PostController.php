@@ -72,7 +72,7 @@ class PostController extends Controller
         ]);
 
         $params['user_id'] = auth()->user()->id;
-        $params['slug'] = Str::slug($request->input('title'));
+        // $params['slug'] = Str::slug($request->input('title'));
         $params['thumbnail'] = str_replace(asset(''), '', $request->input('thumbnail'));
         if ($request->input('publish')) {
             $message = 'Đã đăng bài viết';
@@ -86,6 +86,7 @@ class PostController extends Controller
         }
 
         $post = $this->postRepos->create($params);
+        $post->update(['slug' => Str::slug($request->input('title')).'-'.$post->id]);
 
         if ($request->input('attachments')) {
             $index = 1;
@@ -154,7 +155,7 @@ class PostController extends Controller
             'title.required' => 'Chưa nhập tiêu đề'
         ]);
 
-        $params['slug'] = Str::slug($request->input('title'));
+        $params['slug'] = Str::slug($request->input('title')).'-'.$id;
         $params['thumbnail'] = str_replace(asset(''), '', $request->input('thumbnail'));
 
         if ($request->input('published_at') == '') {

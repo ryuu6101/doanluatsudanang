@@ -186,4 +186,12 @@ class SectionController extends Controller
             'results' => $results,
         ]);
     }
+
+    public function printPost(Category $category, Post $post) {
+        return  view('web.sections.posts.print')->with(['post' => $post]);
+    }
+
+    public function sendMailPost(Category $category, Post $post) {
+        return  view('web.sections.posts.sendmail')->with(['post' => $post]);
+    }
 }

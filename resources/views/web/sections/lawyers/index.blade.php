@@ -1,6 +1,12 @@
 @extends('web.layouts.master')
 
-@section('title', 'Quản lý luật sư')
+@section('title', 'Quản Lý Luật Sư')
+
+@push('meta')
+<meta name="description" content="Quản Lý Luật Sư - Vieworg - Quản Lý Luật Sư">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Quản Lý Luật Sư - Vieworg - Quản Lý Luật Sư">
+@endpush
 
 @section('contents')
 
@@ -68,4 +74,9 @@
         $('.lawyer-thumbnail').height(maxHeight);
     });
 </script>
+{{-- <script type="text/javascript">
+    $(function() {
+        $('.thumbnail').matchHeight({ property: 'min-height' });
+    });
+</script> --}}
 @endpush

@@ -2,6 +2,13 @@
 
 @section('title', 'Liên hệ')
 
+@push('meta')
+<meta name="description" content="Liên hệ - Liên hệ - {{ url()->current() }}">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Liên hệ - Liên hệ - {{ url()->current() }}">
+<meta property="og:url" content="{{ url()->current() }}">
+@endpush
+
 @section('contents')
 
 <div class="page panel panel-default" itemtype="http://schema.org/Article" itemscope="">
@@ -21,7 +28,6 @@
             </div>
             <div class="panel-body">
                 <div class="margin-bottom">
-                    @php($site_info = $site_info ?? \Illuminate\Support\Facades\DB::table('site_configs')->first())
                     {{ $site_info->company_name }}<br>
                     <em><strong>Địa chỉ:</strong></em> {{ $site_info->address }}<br>
                     <em><strong>Điện thoại/Fax:</strong></em> {{ $site_info->phone }}<br>

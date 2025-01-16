@@ -1,12 +1,16 @@
+@php($site_info = DB::table('site_configs')->first())
+
 <html lang="vi" xmlns="http://www.w3.org/1999/xhtml" prefix="og: http://ogp.me/ns#">
 <head>
     <title>@yield('title')</title>
-    <meta name="author" content="doanluatsudanang">
-    <meta name="copyright" content="doanluatsudanang [webmaster@doanluatsudanang.viettuyetsilk.com]">
+    <meta name="author" content="{{ $site_info->site_name }}">
+    <meta name="copyright" content="{{ $site_info->site_name }} [{{ $site_info->site_email }}]">
     <meta name="generator" content="NukeViet v4.4">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="doanluatsudanang">
+    <meta property="og:title" content="@yield('title')">
+    <meta property="og:site_name" content="{{ $site_info->site_name }}">
+    @stack('meta')
+
     <link rel="shortcut icon" href="{{ asset('doanluatsudanang/icon/favicon.ico') }}">
     <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/jquery/jquery.min.js') }}">
     <link rel="preload" as="script" href="{{ asset('doanluatsudanang/assets/js/language/vi.js') }}">

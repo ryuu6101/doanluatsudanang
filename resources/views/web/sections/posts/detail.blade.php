@@ -2,6 +2,17 @@
 
 @section('title', $post->title)
 
+@push('meta')
+<meta name="description" content="{{ $post->title }} - Detail - Tin Tức - {{ url()->current() }}">
+<meta property="og:type" content="article">
+<meta property="og:description" content="{{ $post->title }} - Detail - Tin Tức - {{ url()->current() }}">
+<meta property="og:image" content="{{ url($post->thumbnail) }}">
+<meta property="og:url" content="{{ url()->current() }}">
+<meta property="article:published_time" content="{{ $post->published_at->format('Y-m-d+7H:i:s') }}">
+<meta property="article:modified_time" content="{{ $post->updated_at->format('Y-m-d+7H:i:s') }}">
+<meta property="article:section" content="{{ $post->category->name }}">
+@endpush
+
 @push('styles')
 <style>
     #news-bodyhtml img {
@@ -23,17 +34,22 @@
             <div class="col-md-12">
                 <ul class="list-inline text-right">
                     <li>
-                        <a class="dimgray" rel="nofollow" title="Gửi bài viết qua email" href="#!">
+                        <a class="dimgray" rel="nofollow" title="Gửi bài viết qua email" href="javascript:void(0);"
+                        onclick="nv_open_browse('{{ route('post.sendmail', ['category' => $post->category, 'post' => $post]) }}','',650,500,
+                        'resizable=no,scrollbars=yes,toolbar=no,location=no,status=no');return false">
                             <em class="fa fa-envelope fa-lg">&nbsp;</em>
                         </a>
                     </li>
                     <li>
-                        <a class="dimgray" rel="nofollow" title="In ra" href="#!">
+                        <a class="dimgray" rel="nofollow" title="In ra" href="javascript:void(0);"
+                        onclick="nv_open_browse('{{ route('post.print', ['category' => $post->category, 'post' => $post]) }}','',840,500,
+                        'resizable=yes,scrollbars=yes,toolbar=no,location=no,status=no');return false">
                             <em class="fa fa-print fa-lg">&nbsp;</em>
                         </a>
                     </li>
                     <li>
-                        <a class="dimgray" rel="nofollow" title="Lưu bài viết này" href="#!">
+                        <a class="dimgray" rel="nofollow" title="Lưu bài viết này" download
+                        href="{{ route('post.print', ['category' => $post->category, 'post' => $post]) }}">
                             <em class="fa fa-save fa-lg">&nbsp;</em>
                         </a>
                     </li>

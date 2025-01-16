@@ -2,6 +2,12 @@
 
 @section('title', $lawyer->fullname)
 
+@push('meta')
+<meta name="description" content="{{ $lawyer->fullname }} - Person - Quản Lý Luật Sư">
+<meta property="og:type" content="website">
+<meta property="og:description" content="{{ $lawyer->fullname }} - Person - Quản Lý Luật Sư">
+@endpush
+
 @section('contents')
 
 <div class="panel panel-primary">

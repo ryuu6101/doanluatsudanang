@@ -2,8 +2,14 @@
 
 @section('title', 'doanluatsudanang')
 
-@php($current_time = now()->locale('vi')->translatedFormat('l, d/m/Y, H:i'))
-@section('current_time', ucfirst($current_time))
+@push('meta')
+<meta name="description" content="Tin Tức - Tin Tức - {{ url()->current() }}">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Tin Tức - Tin Tức - {{ url()->current() }}">
+<meta property="og:url" content="{{ url()->current() }}">
+@endpush
+
+@section('current_time', ucfirst(now()->locale('vi')->translatedFormat('l, d/m/Y, H:i')))
 
 @section('contents')
 

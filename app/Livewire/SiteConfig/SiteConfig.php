@@ -11,6 +11,8 @@ class SiteConfig extends Component
     public $address;
     public $phone;
     public $email;
+    public $site_name;
+    public $site_email;
 
     public function mount() {
         $this->getData();
@@ -23,6 +25,8 @@ class SiteConfig extends Component
         $this->address = $config->address ?? '';
         $this->phone = $config->phone ?? '';
         $this->email = $config->email ?? '';
+        $this->site_name = $config->site_name ?? '';
+        $this->site_email = $config->site_email ?? '';
     }
 
     public function save() {
@@ -32,6 +36,8 @@ class SiteConfig extends Component
             'address' => $this->address,
             'phone' => $this->phone,
             'email' => $this->email,
+            'site_name' => $this->site_name,
+            'site_email' => $this->site_email,
         ];
 
         if ($config->count() > 0) {

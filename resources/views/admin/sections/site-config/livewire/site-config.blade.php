@@ -2,6 +2,9 @@
     <div class="col">
         <div class="card">
             <div class="card-body">
+                <input type="text" class="form-control mb-3" placeholder="Tên website" wire:model.blur="site_name">
+                <input type="text" class="form-control mb-3" placeholder="Email website" wire:model.blur="site_email">
+                <strong class="text-muted text-uppercase mb-1 d-block">Footer</strong>
                 <input type="text" class="form-control mb-3" placeholder="Tên cơ quan" wire:model.blur="company_name">
                 <input type="text" class="form-control mb-3" placeholder="Địa chỉ" wire:model.blur="address">
                 <input type="text" class="form-control mb-3" placeholder="Số điện thoại" wire:model.blur="phone">
