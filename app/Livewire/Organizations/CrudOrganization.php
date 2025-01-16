@@ -65,15 +65,16 @@ class CrudOrganization extends Component
     public function create() {
         $this->resetErrorBag();
         $params = $this->validate();
-        $params['slug'] = Str::slug($params['name'], '-');
+        // $params['slug'] = Str::slug($params['name'], '-');
         $organization = $this->organizationRepos->create($params);
+        $organization->update(['slug' => Str::slug($params['name'], '-').'-'.$organization->id]);
         $this->postCrud('Đã thêm tổ chức');
     }
 
     public function update() {
         $this->resetErrorBag();
         $params = $this->validate();
-        $params['slug'] = Str::slug($params['name'], '-');
+        $params['slug'] = Str::slug($params['name'], '-').'-'.$this->organization->id;
         $this->organization->update($params);
         $this->postCrud('Đã cập nhật thông tin tổ chức');
     }
