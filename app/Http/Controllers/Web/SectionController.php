@@ -9,6 +9,7 @@ use App\Models\Document;
 use Illuminate\Support\Str;
 use App\Models\Organization;
 use Illuminate\Http\Request;
+use Jenssegers\Agent\Facades\Agent;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
@@ -26,6 +27,8 @@ class SectionController extends Controller
     protected $lawyerRepos;
     protected $contactMailRepos;
 
+    public $view = 'web';
+
     public function __construct(
         CategoryRepositoryInterface $categoryRepos,
         PostRepositoryInterface $postRepos,
@@ -38,6 +41,8 @@ class SectionController extends Controller
         $this->organizationRepos = $organizationRepos;
         $this->lawyerRepos = $lawyerRepos;
         $this->contactMailRepos = $contactMailRepos;
+
+        if (Agent::isMobile()) $this->view = 'mobile';
     }
 
     public function home() {
@@ -46,7 +51,7 @@ class SectionController extends Controller
         $categories = $this->categoryRepos->getAll();
         $hot_news = $this->postRepos->getPublicPosts()->sortByDesc('published_at')->take(6);
 
-        return view('web.sections.home.index')->with([
+        return view($this->view.'.sections.home.index')->with([
             'menu' => $menu,
             'categories' => $categories,
             'hot_news' => $hot_news,
@@ -56,12 +61,12 @@ class SectionController extends Controller
     public function about() {
         $menu = ['navbar' => 'dashboard'];
 
-        return view('web.sections.about.index')->with(['menu' => $menu]);
+        return view($this->view.'.sections.about.index')->with(['menu' => $menu]);
     }
 
     public function getCategoryPosts(Category $category) {
         $posts = $category->posts()->orderBy('published_at', 'desc')->paginate(20);
-        return view('web.sections.posts.index')->with([
+        return view($this->view.'.sections.posts.index')->with([
             'category' => $category,
             'posts' => $posts,
         ]);
@@ -70,7 +75,7 @@ class SectionController extends Controller
     public function postDetail(Category $category, Post $post, Request $request) {
         // $post->increment('view_count');
 
-        // return view('web.sections.posts.detail')->with([
+        // return view($this->view.'.sections.posts.detail')->with([
         //     'post' => $post,
         // ]);
 
@@ -86,13 +91,13 @@ class SectionController extends Controller
         if (Cookie::get($cookie_name) == '') { //check if cookie is set
             $cookie = cookie($cookie_name, '1', 60); //set the cookie
             $post->increment('view_count'); //count the view
-            return response()->view('web.sections.posts.detail',[
+            return response()->view($this->view.'.sections.posts.detail',[
                 'post' => $post,
                 'newer_posts' => $newer_posts,
                 'older_posts' => $older_posts,
             ])->withCookie($cookie); //store the cookie
         } else {
-            return  view('web.sections.posts.detail')->with([
+            return  view($this->view.'.sections.posts.detail')->with([
                 'post' => $post,
                 'newer_posts' => $newer_posts,
                 'older_posts' => $older_posts,
@@ -105,7 +110,7 @@ class SectionController extends Controller
 
         $organizations = $this->organizationRepos->getAll();
 
-        return view('web.sections.organs.index')->with([
+        return view($this->view.'.sections.organs.index')->with([
             'menu' => $menu,
             'organizations' => $organizations,
         ]);
@@ -113,14 +118,14 @@ class SectionController extends Controller
 
     public function getOrganLawyers(Organization $organization) {
         $lawyers = $organization->lawyers()->paginate(48);
-        return view('web.sections.lawyers.index')->with([
+        return view($this->view.'.sections.lawyers.index')->with([
             'organization' => $organization,
             'lawyers' => $lawyers,
         ]);
     }
 
     public function lawyerDetail(Organization $organization, Lawyer $lawyer) {
-        return view('web.sections.lawyers.detail')->with([
+        return view($this->view.'.sections.lawyers.detail')->with([
             'lawyer' => $lawyer,
         ]);
     }
@@ -128,7 +133,7 @@ class SectionController extends Controller
     public function contact() {
         $menu = ['navbar' => 'lien-he'];
 
-        return view('web.sections.contact.index')->with(['menu' => $menu]);
+        return view($this->view.'.sections.contact.index')->with(['menu' => $menu]);
     }
 
     public function sendContactMail(Request $request) {
@@ -142,11 +147,11 @@ class SectionController extends Controller
     public function documents() {
         $menu = ['navbar' => 'thong-bao-thong-tin'];
 
-        return view('web.sections.documents.index')->with(['menu' => $menu]);
+        return view($this->view.'.sections.documents.index')->with(['menu' => $menu]);
     }
 
     public function documentDetail(Document $document) {
-        return view('web.sections.documents.detail')->with(['document' => $document]);
+        return view($this->view.'.sections.documents.detail')->with(['document' => $document]);
     }
 
     public function search(Request $request) {
@@ -181,7 +186,7 @@ class SectionController extends Controller
         })->sortByDesc('published_at')->paginate(10);
         // dd($results);
 
-        return view('web.sections.search.index')->with([
+        return view($this->view.'.sections.search.index')->with([
             'keyword' => $keyword,
             'results' => $results,
         ]);

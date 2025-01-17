@@ -15,7 +15,7 @@
 @push('styles')
 <style>
     .bodytext img {
-        max-width: 100%;
+        width: 100%;
         height: auto;
     }
 </style>
@@ -36,7 +36,7 @@
         </div>
         <div style="max-width:224px;margin: 10px auto 10px auto">
             @if ($post->thumbnail)
-            <img alt="{{ $post->title }}" src="{{ url($post->thumbnail) }}" class="img-thumbnail" style="max-width: 460px">
+            <img alt="{{ $post->title }}" src="{{ url($post->thumbnail) }}" class="img-thumbnail" width="460">
             @else
             <img alt="" src="{{ asset('images/placeholders/placeholder.png') }}" class="img-thumbnail" width="460">
             @endif
