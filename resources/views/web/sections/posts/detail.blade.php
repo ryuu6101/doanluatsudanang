@@ -7,7 +7,6 @@
 <meta property="og:type" content="article">
 <meta property="og:description" content="{{ $post->title }} - Detail - Tin Tức - {{ url()->current() }}">
 <meta property="og:image" content="{{ url($post->thumbnail) }}">
-<meta property="og:url" content="{{ url()->current() }}">
 <meta property="article:published_time" content="{{ $post->published_at->format('Y-m-d+7H:i:s') }}">
 <meta property="article:modified_time" content="{{ $post->updated_at->format('Y-m-d+7H:i:s') }}">
 <meta property="article:section" content="{{ $post->category->name }}">

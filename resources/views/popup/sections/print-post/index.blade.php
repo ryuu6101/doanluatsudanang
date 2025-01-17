@@ -1,11 +1,10 @@
-@extends('web.popup-layouts.master')
+@extends('popup.layouts.master')
 
 @section('title', $post->title)
 
 @push('meta')
 <meta name="description" content="{{ $post->title }} - Print - {{ $post->category->name }} - {{ url()->current() }}">
 <meta property="og:description" content="Print - {{ $post->category->name }} - {{ url()->current() }}">
-<meta property="og:url" content="{{ url()->current() }}">
 @endpush
 
 @push('styles')
@@ -66,6 +65,7 @@
     
         </div>
         <div class="clear"></div>
+        @php($site_info = DB::table('site_configs')->first())
         <div class="copyright">
             © {{ $site_info->site_name }}
         </div>

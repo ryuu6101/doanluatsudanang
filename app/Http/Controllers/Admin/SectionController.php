@@ -129,9 +129,10 @@ class SectionController extends Controller
 
     public function response(?ContactMail $contact_mail = null) {
         $menu = [
+            'submenu' => 'contact',
             'sidebar' => 'contact-mails',
             'title' => 'Liên hệ',
-            'breadcrumb' => ['Liên hệ'],
+            'breadcrumb' => ['Liên hệ', 'Gửi phản hồi'],
         ];
 
         return view('admin.sections.contact-mails.response')->with([

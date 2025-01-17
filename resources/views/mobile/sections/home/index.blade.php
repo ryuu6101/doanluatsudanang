@@ -2,6 +2,12 @@
 
 @section('title', 'doanluatsudanang')
 
+@push('meta')
+<meta name="description" content="Tin Tức - Tin Tức - {{ url()->current() }}">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Tin Tức - Tin Tức - {{ url()->current() }}">
+@endpush
+
 @section('contents')
 
 @foreach ($categories as $category)

@@ -1,4 +1,4 @@
-@extends('web.popup-layouts.master')
+@extends('popup.layouts.master')
 
 @section('title', $post->title)
 

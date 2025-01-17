@@ -188,10 +188,10 @@ class SectionController extends Controller
     }
 
     public function printPost(Category $category, Post $post) {
-        return  view('web.sections.posts.print')->with(['post' => $post]);
+        return  view('popup.sections.print-post.index')->with(['post' => $post]);
     }
 
     public function sendMailPost(Category $category, Post $post) {
-        return  view('web.sections.posts.sendmail')->with(['post' => $post]);
+        return  view('popup.sections.sendmail-post.index')->with(['post' => $post]);
     }
 }

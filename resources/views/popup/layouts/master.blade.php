@@ -13,6 +13,7 @@
     <meta property="og:title" content="@yield('title')">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ $site_info->site_name }}">
+    <meta property="og:url" content="{{ url()->current() }}">
     @stack('meta')
 
     <link rel="shortcut icon" href="{{ asset('doanluatsudanang/icon/favicon.ico') }}">

@@ -2,6 +2,12 @@
 
 @section('title', 'Quản lý luật sư')
 
+@push('meta')
+<meta name="description" content="Quản Lý Luật Sư - Vieworg - Quản Lý Luật Sư">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Quản Lý Luật Sư - Vieworg - Quản Lý Luật Sư">
+@endpush
+
 @section('contents')
 
 <div class="panel panel-primary">

@@ -2,6 +2,12 @@
 
 @section('title', 'Liên hệ')
 
+@push('meta')
+<meta name="description" content="Liên hệ - Liên hệ - {{ url()->current() }}">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Liên hệ - Liên hệ - {{ url()->current() }}">
+@endpush
+
 @section('contents')
 
 <div class="row">

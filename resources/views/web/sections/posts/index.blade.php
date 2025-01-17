@@ -6,7 +6,6 @@
 <meta name="description" content="{{ $category->name }} - Viewcat - Tin Tức - {{ url()->current() }}">
 <meta property="og:type" content="website">
 <meta property="og:description" content="{{ $category->name }} - Viewcat - Tin Tức - {{ url()->current() }}">
-<meta property="og:url" content="{{ url()->current() }}">
 @endpush
 
 @section('contents')

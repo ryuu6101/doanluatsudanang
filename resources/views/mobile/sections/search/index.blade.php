@@ -1,4 +1,4 @@
-@extends('web.layouts.master')
+@extends('mobile.layouts.master')
 
 @section('title', 'Tìm kiếm')
 
@@ -26,7 +26,7 @@
                         <select name="m" id="search_query_mod" class="form-control">
                             <option value="all">Tìm kiếm trên site</option>
                             <option data-adv="false" value="about">Giới thiệu</option>
-                            <option data-adv="true" value="news" selected="selected">Tin Tức</option>
+                            <option data-adv="true" value="news">Tin Tức</option>
                             <option data-adv="false" value="page">Page</option>
                             <option data-adv="false" value="siteterms">Điều khoản sử dụng</option>
                             <option data-adv="true" value="van-ban-phap-luat">Văn Bản Pháp Luật</option>
@@ -34,7 +34,7 @@
                     </div> --}}
                     <div class="form-group">
                         <input type="submit" id="search_submit" value="Tìm kiếm" class="btn btn-primary">
-                        {{-- <a href="#" class="advSearch">Nâng cao</a> --}}
+                        {{-- <a href="javascript:void(0);" class="advSearch">Nâng cao</a> --}}
                     </div>
                 </div>
                 {{-- <div class="radio">
